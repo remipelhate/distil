@@ -1,0 +1,11 @@
+suites:
+  src:
+    namespace: BeatSwitch\Distil
+    psr4_prefix: BeatSwitch\Distil
+    spec_prefix: spec\src
+    src_path: src
+  fixtures:
+    namespace: Fixtures\BeatSwitch\Distil
+    psr4_prefix: Fixtures\BeatSwitch\Distil
+    spec_prefix: spec\fixtures
+    src_path: fixtures

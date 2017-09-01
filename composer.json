@@ -26,5 +26,13 @@
         "psr-4": {
             "BeatSwitch\\Distil\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fixtures\\BeatSwitch\\Distil\\": "fixtures"
+        }
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^4.0"
     }
 }
