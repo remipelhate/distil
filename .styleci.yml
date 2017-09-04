@@ -9,6 +9,7 @@ disabled:
   - align_double_arrow
   - phpdoc_align
   - phpdoc_separation
+  - simplified_null_return
 
 finder:
   exclude:
