@@ -9,3 +9,4 @@ suites:
     psr4_prefix: Fixtures\BeatSwitch\Distil
     spec_prefix: spec\fixtures
     src_path: fixtures
+formatter.name: dot
