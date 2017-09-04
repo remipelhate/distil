@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\app\BeatSwitch\Distil\Criteria;
+namespace spec\src\BeatSwitch\Distil\Criteria;
 
 use BeatSwitch\Distil\Criteria\Criterion;
 use BeatSwitch\Distil\Criteria\CriterionFactory;
@@ -12,17 +12,17 @@ class CriterionFactorySpec extends ObjectBehavior
     private const NAME = 'stub';
     private const VALUE = 'Some Value';
 
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType(CriterionFactory::class);
     }
 
-    public function it_cannot_create_a_criterion_instance_by_name_when_the_name_has_no_resolver()
+    function it_cannot_create_a_criterion_instance_by_name_when_the_name_has_no_resolver()
     {
         $this->shouldThrow(CannotCreateCriterion::class)->during('createByName', ['rubbish']);
     }
 
-    public function it_can_create_a_criterion_instance_by_name_using_the_criterion_constructor()
+    function it_can_create_a_criterion_instance_by_name_using_the_criterion_constructor()
     {
         $this->beConstructedWith([self::NAME => CriterionForFactory::class]);
 
@@ -33,7 +33,7 @@ class CriterionFactorySpec extends ObjectBehavior
         $criterion->otherValue()->shouldReturn(null);
     }
 
-    public function it_can_create_a_criterion_instance_by_name_using_a_callable_resolver()
+    function it_can_create_a_criterion_instance_by_name_using_a_callable_resolver()
     {
         $this->beConstructedWith([self::NAME => CriterionForFactory::class.'::resolve']);
         $otherValue = 'Some Other Value';
