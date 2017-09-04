@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - 7.1
+
+sudo: false
+
+install:
+  - travis_retry composer install --no-interaction --prefer-source
+
+script:
+  - vendor/bin/phpspec run --verbose
