@@ -9,7 +9,7 @@ use BeatSwitch\Distil\Exceptions\CannotAddCriterion;
 final class Criteria implements ArrayAccess
 {
     /**
-     * @var \BeatSwitch\Distil\Criteria\Criterion[]
+     * @var Criterion[]
      */
     private $items = [];
 
@@ -21,7 +21,7 @@ final class Criteria implements ArrayAccess
     }
 
     /**
-     * @return \BeatSwitch\Distil\Criteria\Criterion[]
+     * @return Criterion[]
      */
     public function all(): array
     {

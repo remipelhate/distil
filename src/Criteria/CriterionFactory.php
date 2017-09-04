@@ -33,6 +33,6 @@ final class CriterionFactory
             return $this->criteriaResolvers[$name];
         }
 
-        throw CannotCreateCriterion::noResolverForName($name, array_keys($this->criteriaResolvers));
+        throw CannotCreateCriterion::missingResolver($name, array_keys($this->criteriaResolvers));
     }
 }
