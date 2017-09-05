@@ -34,12 +34,16 @@ final class Criteria implements ArrayAccess
 
     public function has(string $name): bool
     {
-        return array_key_exists($name, $this->items);
+        return $this->get($name) !== null;
     }
 
     public function get(string $name): ?Criterion
     {
-        return $this->items[$name] ?? null;
+        $items = array_filter($this->items, function (Criterion $criterion, string $key) use ($name) {
+            return $key === $name || $criterion instanceof $name;
+        }, ARRAY_FILTER_USE_BOTH);
+
+        return empty($items) ? null : array_values($items)[0];
     }
 
     public function add(Criterion $criterion): self
@@ -71,7 +75,7 @@ final class Criteria implements ArrayAccess
      */
     public function offsetGet($offset): Criterion
     {
-        return $this->items[$offset];
+        return $this->get($offset) ?? $this->items[$offset];
     }
 
     /**
