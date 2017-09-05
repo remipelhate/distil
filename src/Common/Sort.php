@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Common;
+namespace Distil\Common;
 
-use BeatSwitch\Distil\Types\ListCriterion;
+use Distil\Types\ListCriterion;
 
 final class Sort extends ListCriterion
 {

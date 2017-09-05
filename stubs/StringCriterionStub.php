@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Stubs;
+namespace Distil\Stubs;
 
-use BeatSwitch\Distil\Types\StringCriterion;
+use Distil\Types\StringCriterion;
 
 final class StringCriterionStub extends StringCriterion
 {

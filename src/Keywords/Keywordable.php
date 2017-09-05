@@ -1,6 +1,6 @@
 <?php
 
-namespace BeatSwitch\Distil\Keywords;
+namespace Distil\Keywords;
 
 interface Keywordable
 {

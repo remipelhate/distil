@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Stubs;
+namespace Distil\Stubs;
 
-use BeatSwitch\Distil\Types\IntegerCriterion;
+use Distil\Types\IntegerCriterion;
 
 final class IntegerCriterionStub extends IntegerCriterion
 {

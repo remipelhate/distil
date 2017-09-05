@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\BeatSwitch\Distil\Stubs;
+namespace spec\Distil\Stubs;
 
-use BeatSwitch\Distil\Criteria;
-use BeatSwitch\Distil\Criterion;
-use BeatSwitch\Distil\Exceptions\InvalidCriterionValue;
-use BeatSwitch\Distil\Stubs\DateTimeCriterionStub;
-use BeatSwitch\Distil\Types\DateTimeCriterion;
+use Distil\Criteria;
+use Distil\Criterion;
+use Distil\Exceptions\InvalidCriterionValue;
+use Distil\Stubs\DateTimeCriterionStub;
+use Distil\Types\DateTimeCriterion;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;

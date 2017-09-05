@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\BeatSwitch\Distil\Keywords;
+namespace spec\Distil\Keywords;
 
-use BeatSwitch\Distil\Criterion;
-use BeatSwitch\Distil\Keywords\Value;
-use BeatSwitch\Distil\Stubs\KeywordableCriterionStub;
+use Distil\Criterion;
+use Distil\Keywords\Value;
+use Distil\Stubs\KeywordableCriterionStub;
 use PhpSpec\ObjectBehavior;
 
 class ValueSpec extends ObjectBehavior

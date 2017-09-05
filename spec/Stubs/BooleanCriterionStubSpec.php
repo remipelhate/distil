@@ -1,13 +1,13 @@
 <?php
 
-namespace spec\BeatSwitch\Distil\Stubs;
+namespace spec\Distil\Stubs;
 
-use BeatSwitch\Distil\Criteria;
-use BeatSwitch\Distil\Criterion;
-use BeatSwitch\Distil\Exceptions\InvalidCriterionValue;
-use BeatSwitch\Distil\Keywords\Keywordable;
-use BeatSwitch\Distil\Stubs\BooleanCriterionStub;
-use BeatSwitch\Distil\Types\BooleanCriterion;
+use Distil\Criteria;
+use Distil\Criterion;
+use Distil\Exceptions\InvalidCriterionValue;
+use Distil\Keywords\Keywordable;
+use Distil\Stubs\BooleanCriterionStub;
+use Distil\Types\BooleanCriterion;
 use PhpSpec\ObjectBehavior;
 
 class BooleanCriterionStubSpec extends ObjectBehavior

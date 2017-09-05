@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BeatSwitch\\Distil\\": "src"
+            "Distil\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BeatSwitch\\Distil\\Stubs\\": "stubs"
+            "Distil\\Stubs\\": "stubs"
         }
     }
 }

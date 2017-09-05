@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\BeatSwitch\Distil\Common;
+namespace spec\Distil\Common;
 
-use BeatSwitch\Distil\Common\Sort;
-use BeatSwitch\Distil\Common\SortField;
-use BeatSwitch\Distil\Types\ListCriterion;
+use Distil\Common\Sort;
+use Distil\Common\SortField;
+use Distil\Types\ListCriterion;
 use PhpSpec\ObjectBehavior;
 
 class SortSpec extends ObjectBehavior

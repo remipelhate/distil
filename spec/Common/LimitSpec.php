@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\BeatSwitch\Distil\Common;
+namespace spec\Distil\Common;
 
-use BeatSwitch\Distil\Common\Limit;
-use BeatSwitch\Distil\Exceptions\InvalidCriterionValue;
-use BeatSwitch\Distil\Exceptions\InvalidLimit;
-use BeatSwitch\Distil\Keywords\Keywordable;
-use BeatSwitch\Distil\Types\IntegerCriterion;
+use Distil\Common\Limit;
+use Distil\Exceptions\InvalidCriterionValue;
+use Distil\Exceptions\InvalidLimit;
+use Distil\Keywords\Keywordable;
+use Distil\Types\IntegerCriterion;
 use PhpSpec\ObjectBehavior;
 
 class LimitSpec extends ObjectBehavior

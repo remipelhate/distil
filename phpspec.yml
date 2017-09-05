@@ -1,7 +1,7 @@
 suites:
   src:
-    namespace: BeatSwitch\Distil
-    psr4_prefix: BeatSwitch\Distil
+    namespace: Distil
+    psr4_prefix: Distil
     spec_prefix: spec
     src_path: src
 formatter.name: dot

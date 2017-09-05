@@ -1,6 +1,6 @@
 <?php
 
-namespace BeatSwitch\Distil\Exceptions;
+namespace Distil\Exceptions;
 
 use Exception;
 

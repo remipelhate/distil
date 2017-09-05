@@ -1,10 +1,10 @@
 <?php
 
-namespace BeatSwitch\Distil\Common;
+namespace Distil\Common;
 
-use BeatSwitch\Distil\Exceptions\InvalidLimit;
-use BeatSwitch\Distil\Keywords\Keywordable;
-use BeatSwitch\Distil\Types\IntegerCriterion;
+use Distil\Exceptions\InvalidLimit;
+use Distil\Keywords\Keywordable;
+use Distil\Types\IntegerCriterion;
 
 final class Limit extends IntegerCriterion implements Keywordable
 {

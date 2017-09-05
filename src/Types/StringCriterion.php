@@ -1,11 +1,11 @@
 <?php
 
-namespace BeatSwitch\Distil\Types;
+namespace Distil\Types;
 
-use BeatSwitch\Distil\Criterion;
-use BeatSwitch\Distil\Keywords\Keyword;
-use BeatSwitch\Distil\Keywords\Value;
-use BeatSwitch\Distil\OneOffCriteria;
+use Distil\Criterion;
+use Distil\Keywords\Keyword;
+use Distil\Keywords\Value;
+use Distil\OneOffCriteria;
 
 abstract class StringCriterion implements Criterion
 {

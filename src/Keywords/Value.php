@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Keywords;
+namespace Distil\Keywords;
 
-use BeatSwitch\Distil\Criterion;
+use Distil\Criterion;
 
 final class Value
 {

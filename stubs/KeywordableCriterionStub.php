@@ -1,9 +1,9 @@
 <?php
 
-namespace BeatSwitch\Distil\Stubs;
+namespace Distil\Stubs;
 
-use BeatSwitch\Distil\Criterion;
-use BeatSwitch\Distil\Keywords\Keywordable;
+use Distil\Criterion;
+use Distil\Keywords\Keywordable;
 
 final class KeywordableCriterionStub implements Criterion, Keywordable
 {

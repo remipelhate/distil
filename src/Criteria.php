@@ -1,9 +1,9 @@
 <?php
 
-namespace BeatSwitch\Distil;
+namespace Distil;
 
 use ArrayAccess;
-use BeatSwitch\Distil\Exceptions\CannotAddCriterion;
+use Distil\Exceptions\CannotAddCriterion;
 
 final class Criteria implements ArrayAccess
 {
