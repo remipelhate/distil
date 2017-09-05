@@ -61,6 +61,13 @@ class CriteriaSpec extends ObjectBehavior
         $this->has('rubbish')->shouldReturn(false);
     }
 
+    function it_can_check_if_it_has_criteria_with_a_given_class_name()
+    {
+        $this->beConstructedWith(new CriterionStub());
+
+        $this->has(CriterionStub::class)->shouldReturn(true);
+    }
+
     function it_can_get_a_criterion_by_name_if_it_exists(Criterion $firstCriterion)
     {
         $this->get(self::CRITERION_NAME_FIRST)->shouldReturn($firstCriterion);
@@ -130,5 +137,18 @@ class CriteriaSpec extends ObjectBehavior
 
         $this->offsetSet(null, $overwritingCriterion);
         $this->get(self::CRITERION_NAME_FIRST)->shouldReturn($overwritingCriterion);
+    }
+}
+
+class CriterionStub implements Criterion
+{
+    public function name(): string
+    {
+        return 'stub';
+    }
+
+    public function value()
+    {
+        return null;
     }
 }

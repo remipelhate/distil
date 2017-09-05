@@ -34,7 +34,13 @@ final class Criteria implements ArrayAccess
 
     public function has(string $name): bool
     {
-        return array_key_exists($name, $this->items);
+        if (array_key_exists($name, $this->items)) {
+            return true;
+        }
+
+        return ! empty(array_filter($this->items, function (Criterion $criterion) use ($name) {
+            return $criterion instanceof $name;
+        }));
     }
 
     public function get(string $name): ?Criterion
