@@ -5,7 +5,7 @@ namespace spec\Distil\Stubs;
 use Distil\Criteria;
 use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
-use Distil\Keywords\Keywordable;
+use Distil\Keywords\HasKeywords;
 use Distil\Stubs\BooleanCriterionStub;
 use Distil\Types\BooleanCriterion;
 use PhpSpec\ObjectBehavior;
@@ -23,7 +23,7 @@ class BooleanCriterionStubSpec extends ObjectBehavior
     {
         $this->shouldHaveType(BooleanCriterion::class);
         $this->shouldHaveType(Criterion::class);
-        $this->shouldHaveType(Keywordable::class);
+        $this->shouldHaveType(HasKeywords::class);
     }
 
     function it_can_return_its_name()

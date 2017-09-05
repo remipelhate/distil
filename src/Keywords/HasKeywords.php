@@ -2,7 +2,7 @@
 
 namespace Distil\Keywords;
 
-interface Keywordable
+interface HasKeywords
 {
     public static function keywords(): array;
 }

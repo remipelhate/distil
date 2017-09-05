@@ -5,7 +5,7 @@ namespace spec\Distil\Common;
 use Distil\Common\Limit;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Exceptions\InvalidLimit;
-use Distil\Keywords\Keywordable;
+use Distil\Keywords\HasKeywords;
 use PhpSpec\ObjectBehavior;
 
 class LimitSpec extends ObjectBehavior
@@ -24,7 +24,7 @@ class LimitSpec extends ObjectBehavior
 
     function it_is_keywordable()
     {
-        $this->shouldHaveType(Keywordable::class);
+        $this->shouldHaveType(HasKeywords::class);
     }
 
     function it_cannot_be_created_with_a_zero_value()
