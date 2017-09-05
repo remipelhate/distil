@@ -73,6 +73,13 @@ class CriteriaSpec extends ObjectBehavior
         $this->get(self::CRITERION_NAME_FIRST)->shouldReturn($firstCriterion);
     }
 
+    function it_can_get_a_criterion_by_class_name_if_it_exists()
+    {
+        $this->beConstructedWith(new CriterionStub());
+
+        $this->get(CriterionStub::class)->shouldBeAnInstanceOf(CriterionStub::class);
+    }
+
     function it_returns_null_when_there_is_no_criterion_for_the_given_name()
     {
         $this->get('rubbish')->shouldReturn(null);
