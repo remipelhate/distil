@@ -13,11 +13,11 @@ abstract class IntegerCriterion implements Criterion
     use ActsAsCriteriaFactory;
 
     /**
-     * @var int|null
+     * @var int
      */
     private $value;
 
-    public function __construct(?int $value)
+    public function __construct(int $value)
     {
         $this->value = $value;
     }
@@ -29,14 +29,14 @@ abstract class IntegerCriterion implements Criterion
     {
         $value = (new Keyword(static::class, $value))->value();
 
-        if ($value === null || is_numeric($value)) {
-            return new static($value ? (int) $value : $value);
+        if (is_numeric($value)) {
+            return new static((int) $value);
         }
 
         throw InvalidCriterionValue::expectedNumeric(static::class);
     }
 
-    public function value(): ?int
+    public function value(): int
     {
         return $this->value;
     }
