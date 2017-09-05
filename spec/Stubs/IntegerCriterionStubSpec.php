@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\stubs\Stubs\BeatSwitch\Distil;
+namespace spec\BeatSwitch\Distil\Stubs;
 
 use BeatSwitch\Distil\Criteria;
 use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\Exceptions\InvalidCriterionValue;
+use BeatSwitch\Distil\Stubs\IntegerCriterionStub;
 use BeatSwitch\Distil\Types\IntegerCriterion;
-use Stubs\BeatSwitch\Distil\IntegerCriterionStub;
 use PhpSpec\ObjectBehavior;
 
 class IntegerCriterionStubSpec extends ObjectBehavior

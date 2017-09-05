@@ -32,7 +32,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Stubs\\BeatSwitch\\Distil\\": "stubs"
+            "BeatSwitch\\Distil\\Stubs\\": "stubs"
         }
     }
 }

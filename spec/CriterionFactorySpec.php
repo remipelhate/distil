@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\src\BeatSwitch\Distil;
+namespace spec\BeatSwitch\Distil;
 
 use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\CriterionFactory;

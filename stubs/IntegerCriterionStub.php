@@ -1,6 +1,6 @@
 <?php
 
-namespace Stubs\BeatSwitch\Distil;
+namespace BeatSwitch\Distil\Stubs;
 
 use BeatSwitch\Distil\Types\IntegerCriterion;
 
