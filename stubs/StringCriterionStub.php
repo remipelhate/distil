@@ -1,6 +1,6 @@
 <?php
 
-namespace Fixtures\BeatSwitch\Distil\Types;
+namespace Stubs\BeatSwitch\Distil;
 
 use BeatSwitch\Distil\Types\StringCriterion;
 
