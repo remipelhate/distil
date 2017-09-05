@@ -1,11 +1,11 @@
 <?php
 
-namespace Fixtures\BeatSwitch\Distil;
+namespace Stubs\BeatSwitch\Distil;
 
 use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\Keywords\Keywordable;
 
-final class KeywordableCriterion implements Criterion, Keywordable
+final class KeywordableCriterionStub implements Criterion, Keywordable
 {
     const KEYWORD = 'keyword';
 

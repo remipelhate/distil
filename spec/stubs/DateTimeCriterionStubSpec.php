@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\fixtures\Fixtures\BeatSwitch\Distil\Types;
+namespace spec\stubs\Stubs\BeatSwitch\Distil;
 
 use BeatSwitch\Distil\Criteria;
 use BeatSwitch\Distil\Criterion;
@@ -8,7 +8,7 @@ use BeatSwitch\Distil\Exceptions\InvalidCriterionValue;
 use BeatSwitch\Distil\Types\DateTimeCriterion;
 use DateTime;
 use DateTimeImmutable;
-use Fixtures\BeatSwitch\Distil\Types\DateTimeCriterionStub;
+use Stubs\BeatSwitch\Distil\DateTimeCriterionStub;
 use DateTimeInterface;
 use PhpSpec\ObjectBehavior;
 

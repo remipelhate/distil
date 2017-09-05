@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\fixtures\Fixtures\BeatSwitch\Distil\Types;
+namespace spec\stubs\Stubs\BeatSwitch\Distil;
 
 use BeatSwitch\Distil\Criteria;
 use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\Types\StringCriterion;
-use Fixtures\BeatSwitch\Distil\Types\StringCriterionStub;
+use Stubs\BeatSwitch\Distil\StringCriterionStub;
 use PhpSpec\ObjectBehavior;
 
 class StringCriterionStubSpec extends ObjectBehavior

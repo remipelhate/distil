@@ -4,14 +4,14 @@ namespace spec\src\BeatSwitch\Distil\Keywords;
 
 use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\Keywords\Keyword;
-use Fixtures\BeatSwitch\Distil\KeywordableCriterion;
+use Stubs\BeatSwitch\Distil\KeywordableCriterionStub;
 use PhpSpec\ObjectBehavior;
 
 class KeywordSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(KeywordableCriterion::class, KeywordableCriterion::KEYWORD);
+        $this->beConstructedWith(KeywordableCriterionStub::class, KeywordableCriterionStub::KEYWORD);
     }
 
     function it_is_initializable()
@@ -26,7 +26,7 @@ class KeywordSpec extends ObjectBehavior
 
     function it_returns_the_keyword_as_value_when_it_has_no_associated_value()
     {
-        $this->beConstructedWith(KeywordableCriterion::class, 'rubbish');
+        $this->beConstructedWith(KeywordableCriterionStub::class, 'rubbish');
 
         $this->value()->shouldReturn('rubbish');
     }
