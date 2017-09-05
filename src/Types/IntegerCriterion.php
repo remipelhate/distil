@@ -2,11 +2,11 @@
 
 namespace Distil\Types;
 
+use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Value;
-use Distil\ActsAsCriteriaFactory;
 
 abstract class IntegerCriterion implements Criterion
 {

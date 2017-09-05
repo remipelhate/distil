@@ -2,10 +2,10 @@
 
 namespace Distil\Types;
 
+use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Value;
-use Distil\ActsAsCriteriaFactory;
 
 abstract class StringCriterion implements Criterion
 {

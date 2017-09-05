@@ -2,14 +2,14 @@
 
 namespace Distil\Types;
 
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
+use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Value;
-use Distil\ActsAsCriteriaFactory;
-use DateTime;
-use DateTimeImmutable;
-use DateTimeInterface;
 
 abstract class DateTimeCriterion implements Criterion
 {
