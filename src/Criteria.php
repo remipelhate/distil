@@ -3,7 +3,6 @@
 namespace BeatSwitch\Distil;
 
 use ArrayAccess;
-use BeatSwitch\Distil\Criteria\Criterion;
 use BeatSwitch\Distil\Exceptions\CannotAddCriterion;
 
 final class Criteria implements ArrayAccess

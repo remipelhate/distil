@@ -4,7 +4,7 @@ namespace spec\src\BeatSwitch\Distil;
 
 use ArrayAccess;
 use BeatSwitch\Distil\Criteria;
-use BeatSwitch\Distil\Criteria\Criterion;
+use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\Exceptions\CannotAddCriterion;
 use PhpSpec\ObjectBehavior;
 

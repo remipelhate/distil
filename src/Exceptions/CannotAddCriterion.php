@@ -3,7 +3,7 @@
 namespace BeatSwitch\Distil\Exceptions;
 
 use BeatSwitch\Distil\Criteria;
-use BeatSwitch\Distil\Criteria\Criterion;
+use BeatSwitch\Distil\Criterion;
 use Exception;
 
 final class CannotAddCriterion extends Exception
