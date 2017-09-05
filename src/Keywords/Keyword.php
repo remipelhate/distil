@@ -24,7 +24,7 @@ final class Keyword
     {
         $interfaces = class_implements($criterionClass) ?: [];
 
-        return isset($interfaces[Keywordable::class]);
+        return isset($interfaces[HasKeywords::class]);
     }
 
     public function value()

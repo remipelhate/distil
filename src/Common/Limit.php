@@ -6,10 +6,10 @@ use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Exceptions\InvalidLimit;
 use Distil\Keywords\Keyword;
-use Distil\Keywords\Keywordable;
+use Distil\Keywords\HasKeywords;
 use Distil\Keywords\Value;
 
-final class Limit implements Criterion, Keywordable
+final class Limit implements Criterion, HasKeywords
 {
     const NAME = 'limit';
 

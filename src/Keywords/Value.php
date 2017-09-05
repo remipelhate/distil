@@ -24,7 +24,7 @@ final class Value
 
     public function keyword(): ?string
     {
-        if ($this->criterion instanceof Keywordable) {
+        if ($this->criterion instanceof HasKeywords) {
             return array_search($this->value, $this->criterion->keywords()) ?: null;
         }
 

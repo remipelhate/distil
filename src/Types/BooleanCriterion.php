@@ -5,11 +5,11 @@ namespace Distil\Types;
 use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Keywords\Keyword;
-use Distil\Keywords\Keywordable;
+use Distil\Keywords\HasKeywords;
 use Distil\Keywords\Value;
 use Distil\ActsAsCriteriaFactory;
 
-abstract class BooleanCriterion implements Criterion, Keywordable
+abstract class BooleanCriterion implements Criterion, HasKeywords
 {
     use ActsAsCriteriaFactory;
 

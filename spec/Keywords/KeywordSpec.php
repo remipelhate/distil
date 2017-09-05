@@ -4,14 +4,14 @@ namespace spec\Distil\Keywords;
 
 use Distil\Criterion;
 use Distil\Keywords\Keyword;
-use Distil\Stubs\KeywordableCriterionStub;
+use Distil\Stubs\HasKeywordsCriterionStub;
 use PhpSpec\ObjectBehavior;
 
 class KeywordSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith(KeywordableCriterionStub::class, KeywordableCriterionStub::KEYWORD);
+        $this->beConstructedWith(HasKeywordsCriterionStub::class, HasKeywordsCriterionStub::KEYWORD);
     }
 
     function it_is_initializable()
@@ -26,7 +26,7 @@ class KeywordSpec extends ObjectBehavior
 
     function it_returns_the_keyword_as_value_when_it_has_no_associated_value()
     {
-        $this->beConstructedWith(KeywordableCriterionStub::class, 'rubbish');
+        $this->beConstructedWith(HasKeywordsCriterionStub::class, 'rubbish');
 
         $this->value()->shouldReturn('rubbish');
     }

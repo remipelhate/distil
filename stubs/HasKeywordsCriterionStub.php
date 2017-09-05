@@ -3,9 +3,9 @@
 namespace Distil\Stubs;
 
 use Distil\Criterion;
-use Distil\Keywords\Keywordable;
+use Distil\Keywords\HasKeywords;
 
-final class KeywordableCriterionStub implements Criterion, Keywordable
+final class HasKeywordsCriterionStub implements Criterion, HasKeywords
 {
     const KEYWORD = 'keyword';
 
