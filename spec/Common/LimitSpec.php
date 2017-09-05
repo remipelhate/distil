@@ -6,7 +6,6 @@ use Distil\Common\Limit;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Exceptions\InvalidLimit;
 use Distil\Keywords\Keywordable;
-use Distil\Types\IntegerCriterion;
 use PhpSpec\ObjectBehavior;
 
 class LimitSpec extends ObjectBehavior
@@ -21,11 +20,6 @@ class LimitSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType(Limit::class);
-    }
-
-    function it_extends_the_integer_criterion()
-    {
-        $this->shouldHaveType(IntegerCriterion::class);
     }
 
     function it_is_keywordable()
@@ -71,9 +65,9 @@ class LimitSpec extends ObjectBehavior
 
     function it_can_be_created_from_a_string_with_the_all_keyword()
     {
-        $this->beConstructedThrough('fromString', [Limit::ALL_KEYWORD]);
+        $this->beConstructedThrough('fromString', [Limit::KEYWORD_UNLIMITED]);
 
-        $this->value()->shouldReturn(Limit::ALL);
+        $this->value()->shouldReturn(Limit::UNLIMITED);
     }
 
     function it_is_not_unlimited_when_it_has_a_numeric_value()
