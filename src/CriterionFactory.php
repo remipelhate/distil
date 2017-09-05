@@ -29,10 +29,10 @@ final class CriterionFactory
 
     private function resolver(string $name): string
     {
-        if (array_key_exists($name, $this->criteriaResolvers)) {
-            return $this->criteriaResolvers[$name];
+        if (! array_key_exists($name, $this->criteriaResolvers)) {
+            throw CannotCreateCriterion::missingResolver($name, array_keys($this->criteriaResolvers));
         }
 
-        throw CannotCreateCriterion::missingResolver($name, array_keys($this->criteriaResolvers));
+        return $this->criteriaResolvers[$name];
     }
 }
