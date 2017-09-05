@@ -5,11 +5,11 @@ namespace Distil\Types;
 use Distil\Criterion;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Value;
-use Distil\OneOffCriteria;
+use Distil\ActsAsCriteriaFactory;
 
 abstract class StringCriterion implements Criterion
 {
-    use OneOffCriteria;
+    use ActsAsCriteriaFactory;
 
     /**
      * @var string

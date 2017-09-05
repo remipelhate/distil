@@ -6,14 +6,14 @@ use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Value;
-use Distil\OneOffCriteria;
+use Distil\ActsAsCriteriaFactory;
 use DateTime;
 use DateTimeImmutable;
 use DateTimeInterface;
 
 abstract class DateTimeCriterion implements Criterion
 {
-    use OneOffCriteria;
+    use ActsAsCriteriaFactory;
 
     /**
      * @var DateTimeInterface

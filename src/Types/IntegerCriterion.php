@@ -6,11 +6,11 @@ use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Value;
-use Distil\OneOffCriteria;
+use Distil\ActsAsCriteriaFactory;
 
 abstract class IntegerCriterion implements Criterion
 {
-    use OneOffCriteria;
+    use ActsAsCriteriaFactory;
 
     /**
      * @var int|null
