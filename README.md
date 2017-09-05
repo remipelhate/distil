@@ -7,6 +7,16 @@
 
 Distil provides a simple API for dynamically constructing queries in PHP through small value objects.
 
+- [Getting Started](#getting-started)
+    - [Simple Example](#simple-example)
+    - [Installation](#installation)
+    - [Requirements](#requirements)
+- [Concepts](#concepts)
+    - [Criterion](#criterion)
+    - [Criteria Collection](#criteria-collection)
+    - [Common Criteria](#common-criteria)
+    - [Keywords](#keywords)
+
 ## Getting Started
 
 ### Simple Example
@@ -69,3 +79,11 @@ $ composer require beatswitch/distil:dev-master
 - PHP >= 7.1
 
 ## Concepts
+
+### Criterion
+
+### Criteria Collection
+
+### Common Criteria
+
+### Keywords
