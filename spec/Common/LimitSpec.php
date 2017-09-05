@@ -22,7 +22,7 @@ class LimitSpec extends ObjectBehavior
         $this->shouldHaveType(Limit::class);
     }
 
-    function it_is_keywordable()
+    function it_has_keywords()
     {
         $this->shouldHaveType(HasKeywords::class);
     }

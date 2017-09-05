@@ -17,6 +17,11 @@ final class Limit implements Criterion, HasKeywords
     const KEYWORD_UNLIMITED = 'unlimited';
     const DEFAULT = 10;
 
+    /**
+     * @var int|null
+     */
+    private $value;
+
     public function __construct(?int $value = self::DEFAULT)
     {
         if ($value === 0) {
@@ -37,7 +42,7 @@ final class Limit implements Criterion, HasKeywords
             throw InvalidCriterionValue::expectedNumeric(static::class);
         }
 
-        return new static($value ? (int) $value : $value);
+        return new self($value ? (int) $value : $value);
     }
 
     public function name(): string
@@ -52,7 +57,7 @@ final class Limit implements Criterion, HasKeywords
 
     public function isUnlimited(): bool
     {
-        return $this->value() === self::UNLIMITED;
+        return $this->value === self::UNLIMITED;
     }
 
     public static function keywords(): array
