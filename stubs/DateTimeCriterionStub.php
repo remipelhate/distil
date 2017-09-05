@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Stubs;
+namespace Distil\Stubs;
 
-use BeatSwitch\Distil\Types\DateTimeCriterion;
+use Distil\Types\DateTimeCriterion;
 
 final class DateTimeCriterionStub extends DateTimeCriterion
 {

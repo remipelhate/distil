@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil;
+namespace Distil;
 
-use BeatSwitch\Distil\Exceptions\CannotCreateCriterion;
+use Distil\Exceptions\CannotCreateCriterion;
 
 final class CriterionFactory
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace BeatSwitch\Distil;
+namespace Distil;
 
 trait OneOffCriteria
 {

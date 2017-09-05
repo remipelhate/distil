@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\BeatSwitch\Distil;
+namespace spec\Distil;
 
 use ArrayAccess;
-use BeatSwitch\Distil\Criteria;
-use BeatSwitch\Distil\Criterion;
-use BeatSwitch\Distil\Exceptions\CannotAddCriterion;
+use Distil\Criteria;
+use Distil\Criterion;
+use Distil\Exceptions\CannotAddCriterion;
 use PhpSpec\ObjectBehavior;
 
 class CriteriaSpec extends ObjectBehavior

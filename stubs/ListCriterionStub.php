@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Stubs;
+namespace Distil\Stubs;
 
-use BeatSwitch\Distil\Types\ListCriterion;
+use Distil\Types\ListCriterion;
 
 final class ListCriterionStub extends ListCriterion
 {

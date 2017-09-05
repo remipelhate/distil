@@ -1,6 +1,6 @@
 <?php
 
-namespace BeatSwitch\Distil\Common;
+namespace Distil\Common;
 
 final class SortField
 {

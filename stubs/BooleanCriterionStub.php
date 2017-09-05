@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Stubs;
+namespace Distil\Stubs;
 
-use BeatSwitch\Distil\Types\BooleanCriterion;
+use Distil\Types\BooleanCriterion;
 
 final class BooleanCriterionStub extends BooleanCriterion
 {

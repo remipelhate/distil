@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\BeatSwitch\Distil;
+namespace spec\Distil;
 
-use BeatSwitch\Distil\Criterion;
-use BeatSwitch\Distil\CriterionFactory;
-use BeatSwitch\Distil\Exceptions\CannotCreateCriterion;
+use Distil\Criterion;
+use Distil\CriterionFactory;
+use Distil\Exceptions\CannotCreateCriterion;
 use PhpSpec\ObjectBehavior;
 
 class CriterionFactorySpec extends ObjectBehavior

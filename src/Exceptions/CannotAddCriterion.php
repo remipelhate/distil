@@ -1,9 +1,9 @@
 <?php
 
-namespace BeatSwitch\Distil\Exceptions;
+namespace Distil\Exceptions;
 
-use BeatSwitch\Distil\Criteria;
-use BeatSwitch\Distil\Criterion;
+use Distil\Criteria;
+use Distil\Criterion;
 use Exception;
 
 final class CannotAddCriterion extends Exception

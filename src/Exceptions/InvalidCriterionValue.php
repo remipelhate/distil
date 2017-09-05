@@ -1,8 +1,8 @@
 <?php
 
-namespace BeatSwitch\Distil\Exceptions;
+namespace Distil\Exceptions;
 
-use BeatSwitch\Distil\Types\ListCriterion;
+use Distil\Types\ListCriterion;
 use Exception;
 
 final class InvalidCriterionValue extends Exception

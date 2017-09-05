@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\BeatSwitch\Distil\Common;
+namespace spec\Distil\Common;
 
-use BeatSwitch\Distil\Common\SortField;
+use Distil\Common\SortField;
 use PhpSpec\ObjectBehavior;
 
 class SortFieldSpec extends ObjectBehavior
