@@ -1,14 +1,14 @@
 <?php
 
-namespace spec\stubs\Stubs\BeatSwitch\Distil;
+namespace spec\BeatSwitch\Distil\Stubs;
 
 use BeatSwitch\Distil\Criteria;
 use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\Exceptions\InvalidCriterionValue;
+use BeatSwitch\Distil\Stubs\DateTimeCriterionStub;
 use BeatSwitch\Distil\Types\DateTimeCriterion;
 use DateTime;
 use DateTimeImmutable;
-use Stubs\BeatSwitch\Distil\DateTimeCriterionStub;
 use DateTimeInterface;
 use PhpSpec\ObjectBehavior;
 

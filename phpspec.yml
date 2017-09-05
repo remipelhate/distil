@@ -2,11 +2,6 @@ suites:
   src:
     namespace: BeatSwitch\Distil
     psr4_prefix: BeatSwitch\Distil
-    spec_prefix: spec\src
+    spec_prefix: spec
     src_path: src
-  stubs:
-    namespace: Stubs\BeatSwitch\Distil
-    psr4_prefix: Stubs\BeatSwitch\Distil
-    spec_prefix: spec\stubs
-    src_path: stubs
 formatter.name: dot

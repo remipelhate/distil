@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\src\BeatSwitch\Distil;
+namespace spec\BeatSwitch\Distil;
 
 use ArrayAccess;
 use BeatSwitch\Distil\Criteria;

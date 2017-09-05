@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\src\BeatSwitch\Distil\Common;
+namespace spec\BeatSwitch\Distil\Common;
 
 use BeatSwitch\Distil\Common\SortField;
 use PhpSpec\ObjectBehavior;

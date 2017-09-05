@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\src\BeatSwitch\Distil\Keywords;
+namespace spec\BeatSwitch\Distil\Keywords;
 
 use BeatSwitch\Distil\Criterion;
 use BeatSwitch\Distil\Keywords\Keyword;
-use Stubs\BeatSwitch\Distil\KeywordableCriterionStub;
+use BeatSwitch\Distil\Stubs\KeywordableCriterionStub;
 use PhpSpec\ObjectBehavior;
 
 class KeywordSpec extends ObjectBehavior
