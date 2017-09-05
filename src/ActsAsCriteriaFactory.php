@@ -2,7 +2,7 @@
 
 namespace Distil;
 
-trait OneOffCriteria
+trait ActsAsCriteriaFactory
 {
     public static function criteria(...$arguments): Criteria
     {

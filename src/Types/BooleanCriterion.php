@@ -7,11 +7,11 @@ use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Keywordable;
 use Distil\Keywords\Value;
-use Distil\OneOffCriteria;
+use Distil\ActsAsCriteriaFactory;
 
 abstract class BooleanCriterion implements Criterion, Keywordable
 {
-    use OneOffCriteria;
+    use ActsAsCriteriaFactory;
 
     const KEYWORD_TRUE = 'true';
     const KEYWORD_FALSE = 'false';

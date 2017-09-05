@@ -54,7 +54,7 @@ class ListCriterionStubSpec extends ObjectBehavior
         $this->__toString()->shouldReturn(self::STRING_VALUE);
     }
 
-    function it_can_create_one_off_criteria()
+    function it_can_act_as_criteria_factory()
     {
         $criteria = $this::criteria(1, 6);
 

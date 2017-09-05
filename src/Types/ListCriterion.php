@@ -6,11 +6,11 @@ use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Keywords\Keyword;
 use Distil\Keywords\Value;
-use Distil\OneOffCriteria;
+use Distil\ActsAsCriteriaFactory;
 
 abstract class ListCriterion implements Criterion
 {
-    use OneOffCriteria;
+    use ActsAsCriteriaFactory;
 
     const DELIMITER = ',';
 

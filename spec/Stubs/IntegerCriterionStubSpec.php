@@ -60,7 +60,7 @@ class IntegerCriterionStubSpec extends ObjectBehavior
         $this->__toString()->shouldReturn((string) self::VALUE);
     }
 
-    function it_can_create_one_off_criteria()
+    function it_can_act_as_criteria_factory()
     {
         $criteria = $this::criteria(self::VALUE);
 
