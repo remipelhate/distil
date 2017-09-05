@@ -20,15 +20,15 @@ Distil provides a simple API for dynamically constructing queries in PHP through
 ## Getting Started
 
 ### Simple Example
-Let's consider the following scenario: you have a query object `GetPosts` that returns all posts of your blog by default. However, you only need to retrieve the most recent posts on some places (let's say the ones that were published today). 
-The query itself is identical, you only need to strip out the ones that were created before today. To do so, the query object can accept a Criteria collection that may or may not hold the "recent" condition. 
+Let's consider the following scenario: you have a query object `GetPosts` that returns all posts of your blog by default. However, you only need to retrieve from a specific author on some places. 
+The query itself is identical, you only need to strip out the ones that were created by anyone other than the given author. To do so, the query object can accept a Criteria collection that may or may not hold the "author" condition. 
 ```php
 use Distil\Criteria;
 
-$today = (new DateTimeImmutable())->setTime(0, 0, 0);
+$authorId = 369;
 
-// Since is an implementation of Distil\Criterion which acts as a Criteria factory.
-$posts = (new GetPosts())->get(Since::criteria($today));
+// Author is an implementation of Distil\Criterion which acts as a Criteria factory.
+$posts = (new GetPosts())->get(Author::criteria($authorId));
 ```
 
 The query object internals can then append statements to the query depending of the given criteria:
@@ -41,8 +41,8 @@ final class GetPosts
     {
         ...
         
-        if ($criteria->has(Since::NAME)) {
-            $query->where('created_at', '>', $criteria->get(Since::NAME)->value());
+        if ($criteria->has(Author::NAME)) {
+            $query->where('creator_id', '=', $criteria->get(Author::NAME)->value());
         }
     }
 }
@@ -54,8 +54,8 @@ use Distil\Criteria;
 
 $criteria = new Criteria();
 
-if (isset($_GET['since'])) {
-    $criteria->add(Since::fromString($_GET['since']));
+if (isset($_GET[Author::NAME])) {
+    $criteria->add(Author::fromString($_GET[Author::NAME]));
 }
 
 if (isset($_GET['sort'])) {
@@ -66,8 +66,6 @@ if (isset($_GET['sort'])) {
 
 $posts = (new GetPosts())->get($criteria);
 ```
-
-> **Note**: There are shorter ways to instantiate a variable number of criteria, but we'll tackle those further along the docs.
 
 ### Installation
 You can install this package through Composer:
@@ -81,6 +79,58 @@ $ composer require beatswitch/distil:dev-master
 ## Concepts
 
 ### Criterion
+A <i>Criterion</i> is a small object (identified by a unique name) that wraps around a single value used as a conditional for a result set. Think of filters, limiting, sorting, ... Those objects must adhere to the `Distil\Criterion`  interface.
+
+#### Example
+Let's reconsider the example at the top of the docs and create that `author` filter for the query object. This filter should simply hold the ID of an author:
+```php
+use Distil\Criterion;
+
+final class Author implements Criterion
+{
+    public function __construct(int $value)
+    {
+        $this->value = $value;    
+    }
+    
+    public function name(): string
+    {
+        return 'author';
+    }
+    
+    public function value(): int
+    {
+        return $this->value;
+    }
+}
+```
+
+#### Typed Criteria
+Distil ships with a set of strictly typed abstract classes (one for each value type) which you can use to add some default behaviour to your `Criterion` instances:
+- **Distil\Types\BooleanCriterion** - Wraps around a boolean value.
+- **Distil\Types\DateTimeCriterion** - Wraps around an instance of PHP's `DateTimeInterface` and optionally accepts a datetime format.
+- **Distil\Types\IntegerCriterion** - Wraps around a integer value.
+- **Distil\Types\ListCriterion** - Wraps around an array value.
+- **Distil\Types\StringCriterion** - Wraps around a string value.
+
+Each of these can:
+- be constructed from a string value through the `fromString` named constructor (remember, the default constructor of these are all strictly typed). This is particularly useful when instantiating `Criterion` instances from a URI query string.
+- be constructed from string keywords (see [Keywords](#keywords)).
+- be casted to a string.
+- act as a `Distil\Criteria` factory (see [Criteria Collection](#criteria-collection)).
+
+So, we can simplify our `Author`  filter from above as such:
+```php
+use Distil\Types\IntegerCriterion;
+
+final class Author extends IntegerCriterion
+{
+    public function name(): string
+    {
+        return 'author';
+    }
+}
+```
 
 ### Criteria Collection
 
