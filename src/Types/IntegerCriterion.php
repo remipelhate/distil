@@ -29,11 +29,11 @@ abstract class IntegerCriterion implements Criterion
     {
         $value = (new Keyword(static::class, $value))->value();
 
-        if (is_numeric($value)) {
-            return new static((int) $value);
+        if (! is_numeric($value)) {
+            throw InvalidCriterionValue::expectedNumeric(static::class);
         }
 
-        throw InvalidCriterionValue::expectedNumeric(static::class);
+        return new static((int) $value);
     }
 
     public function value(): int

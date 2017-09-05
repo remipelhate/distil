@@ -33,11 +33,11 @@ abstract class BooleanCriterion implements Criterion, HasKeywords
     {
         $value = (new Keyword(static::class, $value))->value();
 
-        if (is_bool($value)) {
-            return new static($value);
+        if (! is_bool($value)) {
+            throw InvalidCriterionValue::expectedBoolean(static::class);
         }
 
-        throw InvalidCriterionValue::expectedBoolean(static::class);
+        return new static($value);
     }
 
     public function value(): bool

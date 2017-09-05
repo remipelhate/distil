@@ -33,11 +33,11 @@ final class Limit implements Criterion, HasKeywords
     {
         $value = (new Keyword(static::class, $value))->value();
 
-        if ($value === null || is_numeric($value)) {
-            return new static($value ? (int) $value : $value);
+        if ($value !== null && ! is_numeric($value)) {
+            throw InvalidCriterionValue::expectedNumeric(static::class);
         }
 
-        throw InvalidCriterionValue::expectedNumeric(static::class);
+        return new static($value ? (int) $value : $value);
     }
 
     public function name(): string
