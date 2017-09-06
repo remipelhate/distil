@@ -17,6 +17,9 @@ Distil provides a simple API to describe a variable number of conditions that sh
     - [Keywords](#keywords)
     - [Common Criteria](#common-criteria)
     - [Factories](#factories)
+- [Contributing](#contributing)
+- [Changelog](#changelog)
+- [License](#license)
 
 
 # Getting Started
@@ -379,3 +382,15 @@ foreach ($_GET as $name => $value) {
     $criteria->add($factory->createByName($name, $value)),
 }
 ```
+
+## Contributing
+
+Please see [the contributing file](CONTRIBUTING.md) for details.
+
+## Changelog
+
+You can see a list of changes for each release in [our changelog file](CHANGELOG.md).
+
+## License
+
+The MIT License. Please see [the license file](LICENSE) for more information.
