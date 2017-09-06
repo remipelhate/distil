@@ -2,6 +2,6 @@
 
 All notable changes to Distil will be documented in this file. This file follows the *[Keep a CHANGELOG](http://keepachangelog.com/)* standards.
 
-## 0.1.0-alpha.1 - 2017-09-06
+## 0.1.0 - 2017-09-07
 
-First public alpha release.
+First public release.
