@@ -16,6 +16,7 @@ Distil provides a simple API to describe a variable number of conditions that sh
     - [Criterion](#criterion)
     - [Keywords](#keywords)
     - [Common Criteria](#common-criteria)
+    - [Factories](#factories)
 
 
 # Getting Started
@@ -88,7 +89,7 @@ $ composer require beatswitch/distil:dev-master
 
 ### Adding Criteria
 
-Let's reconsider the example at the top of the docs. Imagine we'd want to retrieve all posts from author with ID 1 and sort them in ascending order of the publish_date. You can pass along `Distil\Criterion` instances on construction:
+Let's reconsider the example at the top of the docs. Imagine we'd want to retrieve all posts from author with ID 1 and sort them in ascending order of the publish_date. You can pass along Criterion instances on construction:
 ```php
 $criteria = new Distil\Criteria(new Author($authorId), new Sort('publish_date'));
 ```
@@ -101,7 +102,7 @@ $criteria->add(new Author($authorId))
     ->add(new Sort('publish_date'));
 ```
 
-Each `Distil\Criterion` instance within the collection is unique by name. `add()` does not allow to overwrite an instance in the collection with another one carrying the same name. If you event need to overwrite one, you can use the `set()` method:
+Each Criterion instance within the collection is unique by name. `add()` does not allow to overwrite an instance in the collection with another one carrying the same name. If you event need to overwrite one, you can use the `set()` method:
 ```php
 $criteria = new Distil\Criteria(new Author(1));
 
@@ -111,7 +112,7 @@ $criteria->set(new Author(2)); // This will overwrite new Author(1) with new Aut
 
 ### Getting Criteria
 
-You can check if it contains a `Distil\Criterion` instance by name:
+You can check if it contains a Criterion instance by name:
 ```php
 $criteria = new Distil\Criteria(new Author(1));
 
@@ -168,7 +169,7 @@ final class Author implements Criterion
 
 ### Typed Criteria
 
-Distil ships with a set of strictly typed abstract classes that you can use to add some default behaviour to your `Distil\Criterion` implementations:
+Distil ships with a set of strictly typed abstract classes that you can use to add some default behaviour to your Criterion implementations:
   - **Distil\Types\BooleanCriterion** - Wraps around a boolean value.
   - **Distil\Types\DateTimeCriterion** - Wraps around an instance of PHP's `DateTimeInterface` and optionally accepts a datetime format.
   - **Distil\Types\IntegerCriterion** - Wraps around a integer value.
@@ -179,7 +180,7 @@ Each of these can:
   - be constructed from a string value through the `fromString` named constructor (remember, the default constructor of these are all strictly typed). This is particularly useful when instantiating `Criterion` instances from a URI query string value.
   - be constructed from string keywords (see [Keywords](#keywords)).
   - be casted to a string.
-  - act as a `Distil\Criteria` factory (see [Criterion as Criteria Factories](#criterion-as-criteria-factories)).
+  - act as a `Distil\Criteria` factory (see [Criteria Factories](#criteria-factories)).
 
 So, we can simplify our `Author`  filter from above as such:
 ```php
@@ -195,19 +196,6 @@ final class Author extends IntegerCriterion
     }
 }
 ```
-
-### Criterion as Criteria Factories
-
-Any `Distil\Criterion` instance that extends either one of the `Distil\Types` can also be used as `Distil\Criteria` factories:
-```php
-new Distil\Criteria(new Author($authorId));
-
-// can be rewritten as...
-
-Author::criteria($authorId);
-```
-
-Under the hood, this named constructor will delegate its arguments to the Criterion's default constructor, and pass itself along a new `Distil\Criteria` instance.
 
 ## Keywords
 
@@ -243,7 +231,7 @@ final class Limit implements Criterion
 }
 ```
 
-If we were to offer this as a filter on, for example, a public API, we'd want to be able to resolve `limit=unlimited` to `new Limit(null)`. 'unlimited' can't be naturally casted to a  `null` value, so we need to register it as a keyword. To do so, our `Limit` criterion needs to implement the `Distil\Keywords\HasKeywords` interface, which requires you to define a `keywords()` method:
+If we were to offer this as a filter on, for example, a public API, we'd want to be able to resolve `limit=unlimited` to `new Limit(null)`. 'unlimited' can't be naturally casted to a  `null` value, so we need to register it as a keyword. To do so, our limit Criterion needs to implement the `Distil\Keywords\HasKeywords` interface, which requires you to define a `keywords()` method:
 ```php
 use Distil\Criterion;
 use Distil\Keywords\HasKeywords;
@@ -301,9 +289,56 @@ If the value is associated with a keyword, the keyword will be returned. If it i
 
 ### Keywords on Typed Criteria
 
-As mentioned in the [Typed Criteria](#typed-criteria) section, any `Distil\Criterion` intance that extends either one of the `Distil\Types` automatically handles keywords when created from or casted to a string. This means you only need to implement the `Distil\Keywords\HasKeywords` interface without having to overwrite the `fromString()` or `__toString()`.
+As mentioned in the [Typed Criteria](#typed-criteria) section, any Criterion instance that extends either one of the `Distil\Types` automatically handles keywords when created from or casted to a string. This means you only need to implement the `Distil\Keywords\HasKeywords` interface without having to overwrite the `fromString()` or `__toString()` methods.
 
 In addition, any instances of `Distil\Types\BooleanCriterion` will automatically handle 'true' and 'false' string values.
 
 ## Common Criteria
 
+## Factories
+
+### Criteria Factories
+
+Any Criterion instance that extends either one of the `Distil\Types` can also be used as `Distil\Criteria` factories:
+```php
+new Distil\Criteria(new Author($authorId));
+
+// can be rewritten as...
+
+Author::criteria($authorId);
+```
+
+Under the hood, this named constructor will delegate its arguments to the Criterion's default constructor, and pass itself along a new `Distil\Criteria` instance.
+
+If you want to enable using a Criterion as Criteria factory without extending any of the available Criterion Types, you can use the `Distil\ActsAsCriteriaFactory` trait.
+
+### CriterionFactory
+
+In some cases, you may want to instantiate a Criterion by name. Take the following snippet from the example at the top of the docs:
+```php
+$criteria = new Distil\Criteria();
+
+if (isset($_GET['sort'])) {
+    $criteria->add(new Sort($_GET['sort']));
+}
+
+if (isset($_GET['limit'])) {
+    $criteria->add(Limit::fromString($_GET['limit']));
+}
+
+...
+```
+
+Rather than doing this in every controller that may use the Sort and Limit criteria, you can register a resolvers for them in the `Distil\CriterionFactory`. A resolver is either a class name or a callable (e.g. named constructor, anonumous function, ...) that actually instantiates the Criterion: 
+```php
+// Note that these resolvers could be injected into the factory through your IoC container.
+$factory = new Distil\CriterionFactory([
+    'sort' => Distil\Common\Sort::class,
+    'limit' => Distil\Common\Limit::class.'::fromString',
+]);
+$criteria = new Distil\Criteria();
+
+foreach ($_GET as $name => $value) {
+    $criteria->add($factory->createByName($name, $value)),
+}
+```
