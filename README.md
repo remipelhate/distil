@@ -34,7 +34,7 @@ $authorId = 369;
 // Author is an implementation of Distil\Criterion which acts as a Criteria factory.
 $criteria = Author::criteria($authorId);
 
-$posts = (new GetPosts())->get($criteria);
+$posts = $getPostsQuery->get($criteria);
 ```
 
 The query object internals can then append statements to the query depending of the given criteria. Distil only describes the criteria, you can interpret them however you want. You're fully in control:
@@ -58,17 +58,17 @@ This approach comes in handy when you need to pass along a variable number of cr
 ```php
 $criteria = new Distil\Criteria();
 
-if (isset($_GET[Author::NAME])) {
-    $criteria->add(Author::fromString($_GET[Author::NAME]));
+if (isset($requestData['author'])) {
+    $criteria->add(Author::fromString($requestData['author']));
 }
 
-if (isset($_GET['sort'])) {
-    $criteria->add(new Sort($_GET['sort']));
+if (isset($requestData['sort'])) {
+    $criteria->add(new Sort($requestData['sort']));
 }
 
 ...
 
-$posts = (new GetPosts())->get($criteria);
+$posts = $getPostsQuery->get($criteria);
 ```
 
 ## Installation
@@ -76,7 +76,7 @@ $posts = (new GetPosts())->get($criteria);
 You can install this package through Composer:
 
 ```
-$ composer require beatswitch/distil:dev-master
+$ composer require beatswitch/distil
 ```
 
 ## Requirements
@@ -105,7 +105,7 @@ $criteria->add(new Author($authorId))
     ->add(new Sort('publish_date'));
 ```
 
-Each Criterion instance within the collection is unique by name. `add()` does not allow to overwrite an instance in the collection with another one carrying the same name. If you event need to overwrite one, you can use the `set()` method:
+**Each Criterion instance within the collection is unique by name.** `add()` does not allow to overwrite an instance in the collection with another one carrying the same name. If you event need to overwrite one, you can use the `set()` method:
 ```php
 $criteria = new Distil\Criteria(new Author(1));
 
@@ -358,12 +358,12 @@ In some cases, you may want to instantiate a Criterion by name. Take the followi
 ```php
 $criteria = new Distil\Criteria();
 
-if (isset($_GET['sort'])) {
-    $criteria->add(new Sort($_GET['sort']));
+if (isset($requestData['sort'])) {
+    $criteria->add(new Sort($requestData['sort']));
 }
 
-if (isset($_GET['limit'])) {
-    $criteria->add(Limit::fromString($_GET['limit']));
+if (isset($requestData['limit'])) {
+    $criteria->add(Limit::fromString($requestData['limit']));
 }
 
 ...
@@ -378,7 +378,7 @@ $factory = new Distil\CriterionFactory([
 ]);
 $criteria = new Distil\Criteria();
 
-foreach ($_GET as $name => $value) {
+foreach ($requestData as $name => $value) {
     $criteria->add($factory->createByName($name, $value)),
 }
 ```
