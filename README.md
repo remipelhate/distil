@@ -287,6 +287,8 @@ If the value is associated with a keyword, the keyword will be returned. If it i
 (string) Limit::fromString('unlimited') === 'unlimited'; // true
 ```
 
+> **Note**: Limit was simply used here as an example. It's actually available out of the box. Make sure to check out the [Common Criteria](#common-criteria) section.
+
 ### Keywords on Typed Criteria
 
 As mentioned in the [Typed Criteria](#typed-criteria) section, any Criterion instance that extends either one of the `Distil\Types` automatically handles keywords when created from or casted to a string. This means you only need to implement the `Distil\Keywords\HasKeywords` interface without having to overwrite the `fromString()` or `__toString()` methods.
@@ -294,6 +296,41 @@ As mentioned in the [Typed Criteria](#typed-criteria) section, any Criterion ins
 In addition, any instances of `Distil\Types\BooleanCriterion` will automatically handle 'true' and 'false' string values.
 
 ## Common Criteria
+
+Distil provides a couple of common criteria out of the box:
+
+### Limit
+
+`Distil\Common\Limit` is Criterion implementation that wraps around an integer or null value. It does not extend a Criterion Type, but has the same capabilities as any of them:
+  - It can be constructed from a string value through the `fromString` named constructor.
+  - When constructed from a string value, it accepts the "unlimited" keyword (which is mapped to `null`).
+  - It can be casted to a string.
+  - It can be used as a Criteria factory.
+
+In addition, Limit has a default value (being 10). So you can instantiate it without any arguments:
+```php
+$limit = new Distil\Common\Limit();
+
+$limit->value(); // Returns 10, its default value
+```
+
+### Sort
+
+`Distil\Common\Sort` is an extension of `Distil\Types\ListCriterion`. It accepts a list of field or properties by which a result set should be sorted:
+```php
+$sort = new Distil\Common\Sort('-name', 'created_at');
+```
+
+Note the usage of the "-" sign in front of the "name" property to indicate the result set should be sorted in descending order on that property. 
+
+Its `value()` method simply returns an array containing those sort fields, but you can also retrieve them as small `Distil\Common\SortField` value objects:
+```php
+use Distil\Common\SortField;
+
+$sort = new Distil\Common\Sort('-name');
+
+$sort->sortFields() == [new SortField('name', SortField::DESC)];
+```
 
 ## Factories
 
