@@ -14,8 +14,8 @@ Distil provides a simple API to describe a variable number of conditions that sh
 - [Concepts](#concepts)
     - [Criteria](#criteria)
     - [Criterion](#criterion)
-    - [Common Criteria](#common-criteria)
     - [Keywords](#keywords)
+    - [Common Criteria](#common-criteria)
 
 
 # Getting Started
@@ -113,12 +113,16 @@ $criteria->set(new Author(2)); // This will overwrite new Author(1) with new Aut
 
 You can check if it contains a `Distil\Criterion` instance by name:
 ```php
+$criteria = new Distil\Criteria(new Author(1));
+
 $criteria->has('published'); // returns false
 $criteria->has(Author::NAME); // returns true
 ```
 
 … and get it:
 ```php
+$criteria = new Distil\Criteria(new Author(1));
+
 $criteria->get('published'); // returns null
 $criteria->get(Author::NAME); // returns the Author instance
 ```
@@ -130,7 +134,6 @@ $criteria->get(Author::NAME); // returns the Author instance
 $criteria[] = new Author(1); // Acts as set()
 $author = $criteria[Author::NAME]; // Acts as get(), but throws an error if the name doesn't exist
 ```
-
 
 ## Criterion
 
@@ -166,17 +169,17 @@ final class Author implements Criterion
 ### Typed Criteria
 
 Distil ships with a set of strictly typed abstract classes that you can use to add some default behaviour to your `Distil\Criterion` implementations:
-- **Distil\Types\BooleanCriterion** - Wraps around a boolean value.
-- **Distil\Types\DateTimeCriterion** - Wraps around an instance of PHP's `DateTimeInterface` and optionally accepts a datetime format.
-- **Distil\Types\IntegerCriterion** - Wraps around a integer value.
-- **Distil\Types\ListCriterion** - Wraps around an array value.
-- **Distil\Types\StringCriterion** - Wraps around a string value.
+  - **Distil\Types\BooleanCriterion** - Wraps around a boolean value.
+  - **Distil\Types\DateTimeCriterion** - Wraps around an instance of PHP's `DateTimeInterface` and optionally accepts a datetime format.
+  - **Distil\Types\IntegerCriterion** - Wraps around a integer value.
+  - **Distil\Types\ListCriterion** - Wraps around an array value.
+  - **Distil\Types\StringCriterion** - Wraps around a string value.
 
 Each of these can:
-- be constructed from a string value through the `fromString` named constructor (remember, the default constructor of these are all strictly typed). This is particularly useful when instantiating `Criterion` instances from a URI query string value.
-- be constructed from string keywords (see [Keywords](#keywords)).
-- be casted to a string.
-- act as a `Distil\Criteria` factory (see [Criterion as Criteria Factories](#criterion-as-criteria-factories)).
+  - be constructed from a string value through the `fromString` named constructor (remember, the default constructor of these are all strictly typed). This is particularly useful when instantiating `Criterion` instances from a URI query string value.
+  - be constructed from string keywords (see [Keywords](#keywords)).
+  - be casted to a string.
+  - act as a `Distil\Criteria` factory (see [Criterion as Criteria Factories](#criterion-as-criteria-factories)).
 
 So, we can simplify our `Author`  filter from above as such:
 ```php
@@ -206,7 +209,101 @@ Author::criteria($authorId);
 
 Under the hood, this named constructor will delegate its arguments to the Criterion's default constructor, and pass itself along a new `Distil\Criteria` instance.
 
+## Keywords
+
+When creating a `Distil\Criterion` from a string, you can't always cast that string value to the appropriate value type. Therefor, Distil allows you to define keywords for some specific values.
+
+### Working with keyword values
+
+Let's illustrate this with an example and create a `Limit` filter. The value contained by this filter should either be an integer or `null` (aka, there is no limit):
+```php
+use Distil\Criterion;
+
+final class Limit implements Criterion
+{
+    public function __construct(?int $value)
+    {
+        $this->value = $value;
+    }
+    
+    public static function fromString(string $value): self
+    {
+        return new self((int) $value);
+    }
+
+    public function name(): string
+    {
+        return 'limit';
+    }
+    
+    public function value(): ?int
+    {
+        return $this->value;
+    }
+}
+```
+
+If we were to offer this as a filter on, for example, a public API, we'd want to be able to resolve `limit=unlimited` to `new Limit(null)`. 'unlimited' can't be naturally casted to a  `null` value, so we need to register it as a keyword. To do so, our `Limit` criterion needs to implement the `Distil\Keywords\HasKeywords` interface, which requires you to define a `keywords()` method:
+```php
+use Distil\Criterion;
+use Distil\Keywords\HasKeywords;
+use Distil\Keywords\Keyword;
+
+final class Limit implements Criterion, HasKeywords
+{
+    ...
+    
+    public static function fromString(string $value): self
+    {
+        $value = (new Keyword(self::class, $value))->value();
+        
+        return new self($value ? (int) $value : $value);
+    }
+    
+    public static function keywords(): array
+    {
+        return ['unlimited' => null];
+    }
+}
+```
+
+Note the usage of the `Distil\Keywords\Keyword` class in our `fromString()` constructor. It's a small value object that accepts the Criterion class name and the given string value on construction. Using the `keywords()` method, it can check whether or not the given string value is a keyword for another value. If it is, the actual value will be returned:
+```php
+new Limit(null) == Limit::fromString('unlimited'); // true
+```
+
+Now, imagine you'd want to be able to cast the Criterion value back to a string. Using the `Distil\Keywords\Value` class, you can easily derive the keyword for a value:
+```php
+use Distil\Criterion;
+use Distil\Keywords\HasKeywords;
+use Distil\Keywords\Keyword;
+
+final class Limit implements Criterion, HasKeywords
+{
+    ...
+    
+    public static function keywords(): array
+    {
+        return ['unlimited' => null];
+    }
+    
+    public function __toString(): string
+    {
+        return (new Value($this, $this->value))->keyword() ?: (string) $this->value;
+    }
+}
+```
+
+If the value is associated with a keyword, the keyword will be returned. If it isn't, we'll get `null`:
+```php
+(string) Limit::fromString('unlimited') === 'unlimited'; // true
+```
+
+### Keywords on Typed Criteria
+
+As mentioned in the [Typed Criteria](#typed-criteria) section, any `Distil\Criterion` intance that extends either one of the `Distil\Types` automatically handles keywords when created from or casted to a string. This means you only need to implement the `Distil\Keywords\HasKeywords` interface without having to overwrite the `fromString()` or `__toString()`.
+
+In addition, any instances of `Distil\Types\BooleanCriterion` will automatically handle 'true' and 'false' string values.
 
 ## Common Criteria
 
-## Keywords

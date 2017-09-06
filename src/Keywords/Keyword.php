@@ -17,10 +17,10 @@ final class Keyword
     public function __construct(string $criterionClass, string $keyword)
     {
         $this->keyword = $keyword;
-        $this->values = $this->isKeywordable($criterionClass) ? $criterionClass::keywords() : [];
+        $this->values = $this->hasKeywords($criterionClass) ? $criterionClass::keywords() : [];
     }
 
-    private function isKeywordable(string $criterionClass): bool
+    private function hasKeywords(string $criterionClass): bool
     {
         $interfaces = class_implements($criterionClass) ?: [];
 
