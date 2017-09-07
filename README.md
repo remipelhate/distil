@@ -28,6 +28,7 @@ Distil provides a simple API to describe a variable number of conditions that sh
 
 Let's consider the following scenario: you have a query object `GetPosts` that returns all posts of your blog by default. However, you only need to retrieve posts from a specific author on some places. 
 The query itself is identical, you only need to strip out the ones that were created by anyone other than the given author. To do so, the query object can accept criteria that may or may not hold the "author" criterion:
+
 ```php
 $authorId = 369;
 
@@ -38,6 +39,7 @@ $posts = $getPostsQuery->get($criteria);
 ```
 
 The query object internals can then append statements to the query depending of the given criteria. Distil only describes the criteria, you can interpret them however you want. You're fully in control:
+
 ```php
 use Distil\Criteria;
 
@@ -47,14 +49,15 @@ final class GetPosts
     {
         ...
         
-        if ($criteria->has(Author::NAME)) {
-            $query->where('creator_id', '=', $criteria->get(Author::NAME)->value());
+        if ($criteria->has('author')) {
+            $query->where('creator_id', '=', $criteria->get('author')->value());
         }
     }
 }
 ```
 
 This approach comes in handy when you need to pass along a variable number of criteria to a single query. Imagine we'd use that `GetPosts`  query object to expose those posts through an API and allow users to filter them by author, publish_date, ... and eventually sort them differently:
+
 ```php
 $criteria = new Distil\Criteria();
 
@@ -93,11 +96,13 @@ $ composer require beatswitch/distil
 ### Adding Criteria
 
 Let's reconsider the example at the top of the docs. Imagine we'd want to retrieve all posts from author with ID 1 and sort them in ascending order of the publish_date. You can pass along Criterion instances on construction:
+
 ```php
 $criteria = new Distil\Criteria(new Author($authorId), new Sort('publish_date'));
 ```
 
 … or fluently through the `add()` method:
+
 ```php
 $criteria = new Distil\Criteria();
 
@@ -106,6 +111,7 @@ $criteria->add(new Author($authorId))
 ```
 
 **Each Criterion instance within the collection is unique by name.** `add()` does not allow to overwrite an instance in the collection with another one carrying the same name. If you event need to overwrite one, you can use the `set()` method:
+
 ```php
 $criteria = new Distil\Criteria(new Author(1));
 
@@ -116,27 +122,30 @@ $criteria->set(new Author(2)); // This will overwrite new Author(1) with new Aut
 ### Getting Criteria
 
 You can check if it contains a Criterion instance by name:
+
 ```php
 $criteria = new Distil\Criteria(new Author(1));
 
 $criteria->has('published'); // returns false
-$criteria->has(Author::NAME); // returns true
+$criteria->has('author'); // returns true
 ```
 
 … and get it:
+
 ```php
 $criteria = new Distil\Criteria(new Author(1));
 
 $criteria->get('published'); // returns null
-$criteria->get(Author::NAME); // returns the Author instance
+$criteria->get('author'); // returns the Author instance
 ```
 
 ### Array Access
 
 `Distil\Criteria` implements PHP's `ArrayAccess` interface, meaning you can interact with it as an array:
+
 ```php
 $criteria[] = new Author(1); // Acts as set()
-$author = $criteria[Author::NAME]; // Acts as get(), but throws an error if the name doesn't exist
+$author = $criteria['author']; // Acts as get(), but throws an error if the name doesn't exist
 ```
 
 ## Criterion
@@ -146,6 +155,7 @@ A *Criterion* is a single condition to which a result set should adhere. Think o
 ### Example
 
 Once more, let's go back to our example at the top of the docs and create that `author` filter for the query object. This filter holds the ID of an author:
+
 ```php
 use Distil\Criterion;
 
@@ -186,6 +196,7 @@ Each of these can:
   - act as a `Distil\Criteria` factory (see [Criteria Factories](#criteria-factories)).
 
 So, we can simplify our `Author`  filter from above as such:
+
 ```php
 use Distil\Types\IntegerCriterion;
 
@@ -207,6 +218,7 @@ When creating a `Distil\Criterion` from a string, you can't always cast that str
 ### Working with keyword values
 
 Let's illustrate this with an example and create a `Limit` filter. The value contained by this filter should either be an integer or `null` (aka, there is no limit):
+
 ```php
 use Distil\Criterion;
 
@@ -235,6 +247,7 @@ final class Limit implements Criterion
 ```
 
 If we were to offer this as a filter on, for example, a public API, we'd want to be able to resolve `limit=unlimited` to `new Limit(null)`. 'unlimited' can't be naturally casted to a  `null` value, so we need to register it as a keyword. To do so, our limit Criterion needs to implement the `Distil\Keywords\HasKeywords` interface, which requires you to define a `keywords()` method:
+
 ```php
 use Distil\Criterion;
 use Distil\Keywords\HasKeywords;
@@ -259,11 +272,13 @@ final class Limit implements Criterion, HasKeywords
 ```
 
 Note the usage of the `Distil\Keywords\Keyword` class in our `fromString()` constructor. It's a small value object that accepts the Criterion class name and the given string value on construction. Using the `keywords()` method, it can check whether or not the given string value is a keyword for another value. If it is, the actual value will be returned:
+
 ```php
 new Limit(null) == Limit::fromString('unlimited'); // true
 ```
 
 Now, imagine you'd want to be able to cast the Criterion value back to a string. Using the `Distil\Keywords\Value` class, you can easily derive the keyword for a value:
+
 ```php
 use Distil\Criterion;
 use Distil\Keywords\HasKeywords;
@@ -286,6 +301,7 @@ final class Limit implements Criterion, HasKeywords
 ```
 
 If the value is associated with a keyword, the keyword will be returned. If it isn't, we'll get `null`:
+
 ```php
 (string) Limit::fromString('unlimited') === 'unlimited'; // true
 ```
@@ -311,6 +327,7 @@ Distil provides a couple of common criteria out of the box:
   - It can be used as a Criteria factory.
 
 In addition, Limit has a default value (being 10). So you can instantiate it without any arguments:
+
 ```php
 $limit = new Distil\Common\Limit();
 
@@ -320,6 +337,7 @@ $limit->value(); // Returns 10, its default value
 ### Sort
 
 `Distil\Common\Sort` is an extension of `Distil\Types\ListCriterion`. It accepts a list of field or properties by which a result set should be sorted:
+
 ```php
 $sort = new Distil\Common\Sort('-name', 'created_at');
 ```
@@ -327,6 +345,7 @@ $sort = new Distil\Common\Sort('-name', 'created_at');
 Note the usage of the "-" sign in front of the "name" property to indicate the result set should be sorted in descending order on that property. 
 
 Its `value()` method simply returns an array containing those sort fields, but you can also retrieve them as small `Distil\Common\SortField` value objects:
+
 ```php
 use Distil\Common\SortField;
 
@@ -340,6 +359,7 @@ $sort->sortFields() == [new SortField('name', SortField::DESC)];
 ### Criteria Factories
 
 Any Criterion instance that extends either one of the `Distil\Types` can also be used as `Distil\Criteria` factories:
+
 ```php
 new Distil\Criteria(new Author($authorId));
 
@@ -355,6 +375,7 @@ If you want to enable using a Criterion as Criteria factory without extending an
 ### CriterionFactory
 
 In some cases, you may want to instantiate a Criterion by name. Take the following snippet from the example at the top of the docs:
+
 ```php
 $criteria = new Distil\Criteria();
 
@@ -369,7 +390,8 @@ if (isset($requestData['limit'])) {
 ...
 ```
 
-Rather than doing this in every controller that may use the Sort and Limit criteria, you can register a resolvers for them in the `Distil\CriterionFactory`. A resolver is either a class name or a callable (e.g. named constructor, anonumous function, ...) that actually instantiates the Criterion: 
+Rather than doing this in every controller that may use the Sort and Limit criteria, you can register a resolvers for them in the `Distil\CriterionFactory`. A resolver is either a class name or a callable (e.g. named constructor, anonumous function, ...) that actually instantiates the Criterion:
+
 ```php
 // Note that these resolvers could be injected into the factory through your IoC container.
 $factory = new Distil\CriterionFactory([
