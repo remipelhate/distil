@@ -130,7 +130,7 @@ $criteria->has('published'); // returns false
 $criteria->has('author'); // returns true
 ```
 
-… and get it:
+... and get it:
 
 ```php
 $criteria = new Distil\Criteria(new Author(1));
