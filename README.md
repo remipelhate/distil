@@ -9,8 +9,8 @@ Distil provides a simple API to describe a variable number of conditions that sh
 
 - [Getting Started](#getting-started)
     - [Simple Example](#simple-example)
-    - [Installation](#installation)
     - [Requirements](#requirements)
+    - [Installation](#installation)
 - [Concepts](#concepts)
     - [Criteria](#criteria)
     - [Criterion](#criterion)
@@ -74,6 +74,10 @@ if (isset($requestData['sort'])) {
 $posts = $getPostsQuery->get($criteria);
 ```
 
+## Requirements
+
+- PHP >= 7.1
+
 ## Installation
 
 You can install this package through Composer:
@@ -81,10 +85,6 @@ You can install this package through Composer:
 ```
 $ composer require beatswitch/distil
 ```
-
-## Requirements
-
-- PHP >= 7.1
 
 
 # Concepts
