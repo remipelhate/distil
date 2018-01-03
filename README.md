@@ -397,6 +397,9 @@ Rather than doing this in every controller that may use the Sort and Limit crite
 $factory = new Distil\CriterionFactory([
     'sort' => Distil\Common\Sort::class,
     'limit' => Distil\Common\Limit::class.'::fromString',
+    'foo' => function () {
+        // Some logic to resolve the foo criterion...
+    },
 ]);
 $criteria = new Distil\Criteria();
 
