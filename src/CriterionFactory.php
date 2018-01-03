@@ -3,6 +3,7 @@
 namespace Distil;
 
 use Distil\Exceptions\CannotCreateCriterion;
+use InvalidArgumentException;
 
 final class CriterionFactory
 {
@@ -13,7 +14,18 @@ final class CriterionFactory
 
     public function __construct(array $criteriaResolvers = [])
     {
+        foreach ($criteriaResolvers as $resolver) {
+            if (! $this->isValidResolver($resolver)) {
+                throw new InvalidArgumentException('Resolvers should either be callable or a class name.');
+            }
+        }
+
         $this->criteriaResolvers = $criteriaResolvers;
+    }
+
+    private function isValidResolver($resolver): bool
+    {
+        return is_callable($resolver) || class_exists($resolver);
     }
 
     public function createByName(string $name, ...$arguments): Criterion
@@ -27,7 +39,7 @@ final class CriterionFactory
         return new $criterion(...$arguments);
     }
 
-    private function resolver(string $name): string
+    private function resolver(string $name)
     {
         if (! array_key_exists($name, $this->criteriaResolvers)) {
             throw CannotCreateCriterion::missingResolver($name, array_keys($this->criteriaResolvers));
