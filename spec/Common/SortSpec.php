@@ -4,6 +4,7 @@ namespace spec\Distil\Common;
 
 use Distil\Common\Sort;
 use Distil\Common\SortField;
+use Distil\Criteria;
 use Distil\Types\ListCriterion;
 use PhpSpec\ObjectBehavior;
 
@@ -60,5 +61,13 @@ class SortSpec extends ObjectBehavior
             new SortField(self::SORT_FIELD_FOO, SortField::DESC),
             new SortField(self::SORT_FIELD_BAR.'.baz', SortField::ASC),
         ]);
+    }
+
+    function it_can_act_as_criteria_factory()
+    {
+        $criteria = $this::criteria(...self::VALUE);
+
+        $criteria->shouldBeAnInstanceOf(Criteria::class);
+        $criteria[Sort::NAME]->value()->shouldReturn(self::VALUE);
     }
 }
