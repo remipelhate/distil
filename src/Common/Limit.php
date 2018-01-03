@@ -2,6 +2,7 @@
 
 namespace Distil\Common;
 
+use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Exceptions\InvalidLimit;
@@ -11,6 +12,8 @@ use Distil\Keywords\Value;
 
 final class Limit implements Criterion, HasKeywords
 {
+    use ActsAsCriteriaFactory;
+
     const NAME = 'limit';
 
     const UNLIMITED = null;

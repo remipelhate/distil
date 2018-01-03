@@ -6,6 +6,7 @@ All notable changes to Distil will be documented in this file. This file follows
 
 ### Fixed
 - Fixed support for anonymous functions as resolvers in `Distil\CriterionFactory`.
+- Fixed using `Distil\Common\Limit` as Criteria factory.
 
 ## [0.1.0] - 2017-09-07
 

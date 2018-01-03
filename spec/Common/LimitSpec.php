@@ -3,6 +3,7 @@
 namespace spec\Distil\Common;
 
 use Distil\Common\Limit;
+use Distil\Criteria;
 use Distil\Exceptions\InvalidCriterionValue;
 use Distil\Exceptions\InvalidLimit;
 use Distil\Keywords\HasKeywords;
@@ -80,5 +81,13 @@ class LimitSpec extends ObjectBehavior
         $this->beConstructedWith(null);
 
         $this->isUnlimited()->shouldReturn(true);
+    }
+
+    function it_can_act_as_criteria_factory()
+    {
+        $criteria = $this::criteria(self::VALUE);
+
+        $criteria->shouldBeAnInstanceOf(Criteria::class);
+        $criteria[Limit::NAME]->value()->shouldReturn(self::VALUE);
     }
 }
