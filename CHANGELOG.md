@@ -2,7 +2,7 @@
 
 All notable changes to Distil will be documented in this file. This file follows the *[Keep a CHANGELOG](http://keepachangelog.com/)* standards.
 
-## [Unreleased]
+## [0.1.1] - 2018-01-03
 
 ### Fixed
 - Fixed support for anonymous functions as resolvers in `Distil\CriterionFactory`.
