@@ -6,7 +6,8 @@ All notable changes to Distil will be documented in this file. This file follows
 
 ### Changes
 
-- The repo has been transferred from the [Beatswitch](https://github.com/beatswitch) organisation to [remipelhate](https://github.com/remipelhate) as Beatswitch will no longer maintain the package.  
+- The repo has been transferred from the [Beatswitch](https://github.com/beatswitch) organisation to [remipelhate](https://github.com/remipelhate) as Beatswitch will no longer maintain the package.
+- Tests are now being ran against PHP versions 7.1, 7.2 and 7.3.  
 
 ## [0.1.1] - 2018-01-03
 
