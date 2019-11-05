@@ -1,18 +1,7 @@
 {
-    "name": "beatswitch/distil",
+    "name": "remipelhate/distil",
     "license": "MIT",
     "authors": [
-        {
-            "name": "BeatSwitch",
-            "email": "hello@beatswitch.com",
-            "homepage": "https://www.beatswitch.com"
-        },
-        {
-            "name": "Dries Vints",
-            "email": "dries.vints@gmail.com",
-            "homepage": "http://driesvints.com",
-            "role": "Developer"
-        },
         {
             "name": "Rémi Pelhate",
             "email": "remi.pelhate@icloud.com",
