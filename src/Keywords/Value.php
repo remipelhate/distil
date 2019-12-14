@@ -6,10 +6,7 @@ use Distil\Criterion;
 
 final class Value
 {
-    /**
-     * @var Criterion
-     */
-    private $criterion;
+    private Criterion $criterion;
 
     /**
      * @var mixed

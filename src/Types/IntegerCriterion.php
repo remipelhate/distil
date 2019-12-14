@@ -12,10 +12,7 @@ abstract class IntegerCriterion implements Criterion
 {
     use ActsAsCriteriaFactory;
 
-    /**
-     * @var int
-     */
-    private $value;
+    private int $value;
 
     public function __construct(int $value)
     {

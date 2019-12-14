@@ -12,12 +12,9 @@ abstract class ListCriterion implements Criterion
 {
     use ActsAsCriteriaFactory;
 
-    const DELIMITER = ',';
+    public const DELIMITER = ',';
 
-    /**
-     * @var array
-     */
-    private $value;
+    private array $value;
 
     public function __construct(...$values)
     {
@@ -26,7 +23,7 @@ abstract class ListCriterion implements Criterion
         $this->value = $values;
     }
 
-    private function assertIdenticalValueTypes(...$values)
+    private function assertIdenticalValueTypes(...$values): void
     {
         $value = array_shift($values);
 

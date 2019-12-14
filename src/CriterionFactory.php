@@ -7,10 +7,7 @@ use InvalidArgumentException;
 
 final class CriterionFactory
 {
-    /**
-     * @var array
-     */
-    private $criteriaResolvers;
+    private array $criteriaResolvers;
 
     public function __construct(array $criteriaResolvers = [])
     {

@@ -7,7 +7,7 @@ use Distil\Keywords\HasKeywords;
 
 final class HasKeywordsCriterionStub implements Criterion, HasKeywords
 {
-    const KEYWORD = 'keyword';
+    public const KEYWORD = 'keyword';
 
     public function name(): string
     {

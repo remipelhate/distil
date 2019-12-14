@@ -6,7 +6,7 @@ use Distil\Types\ListCriterion;
 
 final class Sort extends ListCriterion
 {
-    const NAME = 'sort';
+    public const NAME = 'sort';
 
     public function __construct(string ...$values)
     {

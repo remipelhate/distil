@@ -4,15 +4,8 @@ namespace Distil\Keywords;
 
 final class Keyword
 {
-    /**
-     * @var string
-     */
-    private $keyword;
-
-    /**
-     * @var array
-     */
-    private $values;
+    private string $keyword;
+    private array $values;
 
     public function __construct(string $criterionClass, string $keyword)
     {

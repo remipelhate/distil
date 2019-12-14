@@ -15,15 +15,8 @@ abstract class DateTimeCriterion implements Criterion
 {
     use ActsAsCriteriaFactory;
 
-    /**
-     * @var DateTimeInterface
-     */
-    private $value;
-
-    /**
-     * @var string
-     */
-    private $format;
+    private DateTimeInterface $value;
+    private string $format;
 
     public function __construct(DateTimeInterface $value, string $format = DateTime::ATOM)
     {

@@ -4,23 +4,12 @@ namespace Distil\Common;
 
 final class SortField
 {
-    const ASC = 'ASC';
-    const DESC = 'DESC';
+    public const ASC = 'ASC';
+    public const DESC = 'DESC';
 
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var array
-     */
-    private $relations;
-
-    /**
-     * @var string
-     */
-    private $order;
+    private string $name;
+    private array $relations;
+    private string $order;
 
     public function __construct(string $field, string $order)
     {

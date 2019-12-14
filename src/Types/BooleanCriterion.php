@@ -13,13 +13,10 @@ abstract class BooleanCriterion implements Criterion, HasKeywords
 {
     use ActsAsCriteriaFactory;
 
-    const KEYWORD_TRUE = 'true';
-    const KEYWORD_FALSE = 'false';
+    public const KEYWORD_TRUE = 'true';
+    public const KEYWORD_FALSE = 'false';
 
-    /**
-     * @var bool
-     */
-    private $value;
+    private bool $value;
 
     public function __construct(bool $value)
     {

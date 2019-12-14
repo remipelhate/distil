@@ -14,16 +14,12 @@ final class Limit implements Criterion, HasKeywords
 {
     use ActsAsCriteriaFactory;
 
-    const NAME = 'limit';
+    public const NAME = 'limit';
+    public const UNLIMITED = null;
+    public const KEYWORD_UNLIMITED = 'unlimited';
+    public const DEFAULT = 10;
 
-    const UNLIMITED = null;
-    const KEYWORD_UNLIMITED = 'unlimited';
-    const DEFAULT = 10;
-
-    /**
-     * @var int|null
-     */
-    private $value;
+    private ?int $value;
 
     public function __construct(?int $value = self::DEFAULT)
     {

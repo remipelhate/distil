@@ -10,7 +10,7 @@ final class Criteria implements ArrayAccess
     /**
      * @var Criterion[]
      */
-    private $items = [];
+    private array $items = [];
 
     public function __construct(Criterion ...$items)
     {
@@ -77,7 +77,7 @@ final class Criteria implements ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (! $value instanceof Criterion) {
             throw CannotAddCriterion::notACriterionInstance();
@@ -89,7 +89,7 @@ final class Criteria implements ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->items[$offset]);
     }
