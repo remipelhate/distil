@@ -74,6 +74,6 @@ class DateTimeCriterionStubSpec extends ObjectBehavior
         $criteria = $this::criteria($value);
 
         $criteria->shouldBeAnInstanceOf(Criteria::class);
-        $criteria[DateTimeCriterionStub::NAME]->value()->shouldReturn($value);
+        $criteria->get(DateTimeCriterionStub::NAME)->value()->shouldReturn($value);
     }
 }

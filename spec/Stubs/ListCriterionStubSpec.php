@@ -59,6 +59,6 @@ class ListCriterionStubSpec extends ObjectBehavior
         $criteria = $this::criteria(1, 6);
 
         $criteria->shouldReturnAnInstanceOf(Criteria::class);
-        $criteria[ListCriterionStub::NAME]->value()->shouldReturn([1, 6]);
+        $criteria->get(ListCriterionStub::NAME)->value()->shouldReturn([1, 6]);
     }
 }

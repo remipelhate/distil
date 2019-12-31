@@ -68,6 +68,6 @@ class SortSpec extends ObjectBehavior
         $criteria = $this::criteria(...self::VALUE);
 
         $criteria->shouldBeAnInstanceOf(Criteria::class);
-        $criteria[Sort::NAME]->value()->shouldReturn(self::VALUE);
+        $criteria->get(Sort::NAME)->value()->shouldReturn(self::VALUE);
     }
 }

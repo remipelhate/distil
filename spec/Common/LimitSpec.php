@@ -88,6 +88,6 @@ class LimitSpec extends ObjectBehavior
         $criteria = $this::criteria(self::VALUE);
 
         $criteria->shouldBeAnInstanceOf(Criteria::class);
-        $criteria[Limit::NAME]->value()->shouldReturn(self::VALUE);
+        $criteria->get(Limit::NAME)->value()->shouldReturn(self::VALUE);
     }
 }

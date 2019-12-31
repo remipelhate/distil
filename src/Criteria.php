@@ -2,10 +2,9 @@
 
 namespace Distil;
 
-use ArrayAccess;
 use Distil\Exceptions\CannotAddCriterion;
 
-final class Criteria implements ArrayAccess
+final class Criteria
 {
     /**
      * @var Criterion[]
@@ -56,41 +55,5 @@ final class Criteria implements ArrayAccess
         $this->items[$criterion->name()] = $criterion;
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetExists($offset)
-    {
-        return $this->has($offset);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetGet($offset): Criterion
-    {
-        return $this->items[$offset];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetSet($offset, $value): void
-    {
-        if (! $value instanceof Criterion) {
-            throw CannotAddCriterion::notACriterionInstance();
-        }
-
-        $this->set($value);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetUnset($offset): void
-    {
-        unset($this->items[$offset]);
     }
 }

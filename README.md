@@ -139,15 +139,6 @@ $criteria->get('published'); // returns null
 $criteria->get('author'); // returns the Author instance
 ```
 
-### Array Access
-
-`Distil\Criteria` implements PHP's `ArrayAccess` interface, meaning you can interact with it as an array:
-
-```php
-$criteria[] = new Author(1); // Acts as set()
-$author = $criteria['author']; // Acts as get(), but throws an error if the name doesn't exist
-```
-
 ## Criterion
 
 A *Criterion* is a single condition to which a result set should adhere. Think of a filter, a limit, sorting, ...  Distil represents these as small value objects (identified by a unique name) that wrap around a single value. Those objects must implement the `Distil\Criterion`  interface.

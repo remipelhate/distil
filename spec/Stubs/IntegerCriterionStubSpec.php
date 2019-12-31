@@ -65,6 +65,6 @@ class IntegerCriterionStubSpec extends ObjectBehavior
         $criteria = $this::criteria(self::VALUE);
 
         $criteria->shouldBeAnInstanceOf(Criteria::class);
-        $criteria[IntegerCriterionStub::NAME]->value()->shouldReturn(self::VALUE);
+        $criteria->get(IntegerCriterionStub::NAME)->value()->shouldReturn(self::VALUE);
     }
 }

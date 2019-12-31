@@ -43,6 +43,6 @@ class StringCriterionStubSpec extends ObjectBehavior
         $criteria = $this::criteria(self::VALUE);
 
         $criteria->shouldReturnAnInstanceOf(Criteria::class);
-        $criteria[StringCriterionStub::NAME]->value()->shouldReturn(self::VALUE);
+        $criteria->get(StringCriterionStub::NAME)->value()->shouldReturn(self::VALUE);
     }
 }

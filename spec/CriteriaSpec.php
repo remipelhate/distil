@@ -2,7 +2,6 @@
 
 namespace spec\Distil;
 
-use ArrayAccess;
 use Distil\Criteria;
 use Distil\Criterion;
 use Distil\Exceptions\CannotAddCriterion;
@@ -87,49 +86,6 @@ class CriteriaSpec extends ObjectBehavior
         $overwritingCriterion->name()->willReturn(self::CRITERION_NAME_FIRST);
 
         $this->set($overwritingCriterion)->shouldReturnAnInstanceOf(Criteria::class);
-        $this->get(self::CRITERION_NAME_FIRST)->shouldReturn($overwritingCriterion);
-    }
-
-    public function it_can_be_used_as_an_array(): void
-    {
-        $this->shouldHaveType(ArrayAccess::class);
-    }
-
-    public function it_can_check_if_it_has_criteria_through_array_access(): void
-    {
-        $this->offsetExists(self::CRITERION_NAME_FIRST)->shouldReturn(true);
-        $this->offsetExists('rubbish')->shouldReturn(false);
-    }
-
-    public function it_can_get_a_criterion_through_array_access(Criterion $firstCriterion): void
-    {
-        $this->offsetGet(self::CRITERION_NAME_FIRST)->shouldReturn($firstCriterion);
-    }
-
-    public function it_cannot_get_a_criterion_through_array_access_when_the_key_is_undefined(): void
-    {
-        $this->shouldThrow()->during('offsetGet', ['rubbish']);
-    }
-
-    public function it_can_set_a_new_criterion_through_array_access(Criterion $newCriterion): void
-    {
-        $this->offsetSet(null, $newCriterion);
-        $this->has(self::CRITERION_NAME_NEW)->shouldReturn(true);
-    }
-
-    public function it_always_uses_the_criterion_name_when_adding_criterion_through_array_access(
-        Criterion $newCriterion
-    ): void {
-        $this->offsetSet('rubbish', $newCriterion);
-        $this->has('rubbish')->shouldReturn(false);
-        $this->has(self::CRITERION_NAME_NEW)->shouldReturn(true);
-    }
-
-    public function it_can_overwrite_a_criterion_by_name_through_array_access(Criterion $overwritingCriterion): void
-    {
-        $overwritingCriterion->name()->willReturn(self::CRITERION_NAME_FIRST);
-
-        $this->offsetSet(null, $overwritingCriterion);
         $this->get(self::CRITERION_NAME_FIRST)->shouldReturn($overwritingCriterion);
     }
 }

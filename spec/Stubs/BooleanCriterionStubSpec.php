@@ -81,6 +81,6 @@ class BooleanCriterionStubSpec extends ObjectBehavior
         $criteria = $this::criteria(self::VALUE);
 
         $criteria->shouldBeAnInstanceOf(Criteria::class);
-        $criteria[BooleanCriterionStub::NAME]->value()->shouldReturn(self::VALUE);
+        $criteria->get(BooleanCriterionStub::NAME)->value()->shouldReturn(self::VALUE);
     }
 }
