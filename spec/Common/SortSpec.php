@@ -17,7 +17,7 @@ class SortSpec extends ObjectBehavior
         '-'.self::SORT_FIELD_BAR,
     ];
 
-    function let()
+    public function let(): void
     {
         $this->beConstructedWith(
             self::SORT_FIELD_FOO,
@@ -25,22 +25,22 @@ class SortSpec extends ObjectBehavior
         );
     }
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(Sort::class);
     }
 
-    function it_extends_the_list_criterion()
+    public function it_extends_the_list_criterion(): void
     {
         $this->shouldHaveType(ListCriterion::class);
     }
 
-    function it_can_return_its_value()
+    public function it_can_return_its_value(): void
     {
         $this->value()->shouldReturn(self::VALUE);
     }
 
-    function it_can_return_its_sort_fields()
+    public function it_can_return_its_sort_fields(): void
     {
         $this->sortFields()->shouldBeLike([
             new SortField(self::SORT_FIELD_FOO, SortField::ASC),
@@ -48,12 +48,12 @@ class SortSpec extends ObjectBehavior
         ]);
     }
 
-    function it_can_be_casted_to_a_string()
+    public function it_can_be_casted_to_a_string(): void
     {
         $this->__toString()->shouldReturn('foo,-bar');
     }
 
-    function it_can_be_created_from_a_string()
+    public function it_can_be_created_from_a_string(): void
     {
         $this->beConstructedThrough('fromString', ['-foo,bar.baz']);
 
@@ -63,7 +63,7 @@ class SortSpec extends ObjectBehavior
         ]);
     }
 
-    function it_can_act_as_criteria_factory()
+    public function it_can_act_as_criteria_factory(): void
     {
         $criteria = $this::criteria(...self::VALUE);
 

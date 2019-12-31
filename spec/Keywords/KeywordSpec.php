@@ -9,29 +9,29 @@ use PhpSpec\ObjectBehavior;
 
 class KeywordSpec extends ObjectBehavior
 {
-    function let()
+    public function let(): void
     {
         $this->beConstructedWith(HasKeywordsCriterionStub::class, HasKeywordsCriterionStub::KEYWORD);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(Keyword::class);
     }
 
-    function it_can_return_the_value_associated_with_the_keyword()
+    public function it_can_return_the_value_associated_with_the_keyword(): void
     {
         $this->value()->shouldReturn(null);
     }
 
-    function it_returns_the_keyword_as_value_when_it_has_no_associated_value()
+    public function it_returns_the_keyword_as_value_when_it_has_no_associated_value(): void
     {
         $this->beConstructedWith(HasKeywordsCriterionStub::class, 'rubbish');
 
         $this->value()->shouldReturn('rubbish');
     }
 
-    function it_returns_the_keyword_as_value_when_the_criterion_class_is_not_keywordable()
+    public function it_returns_the_keyword_as_value_when_the_criterion_class_is_not_keywordable(): void
     {
         $this->beConstructedWith(Criterion::class, 'foo');
 

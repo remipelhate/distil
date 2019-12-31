@@ -14,47 +14,47 @@ class ListCriterionStubSpec extends ObjectBehavior
     private const VALUE = ['foo', 'bar'];
     private const STRING_VALUE = 'foo,bar';
 
-    function let()
+    public function let(): void
     {
         $this->beConstructedWith(...self::VALUE);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(ListCriterion::class);
         $this->shouldHaveType(Criterion::class);
     }
 
-    function it_cannot_be_created_with_mixed_value_types()
+    public function it_cannot_be_created_with_mixed_value_types(): void
     {
         $this->beConstructedWith(1, 'foo');
 
         $this->shouldThrow(InvalidCriterionValue::class)->duringInstantiation();
     }
 
-    function it_can_return_its_name()
+    public function it_can_return_its_name(): void
     {
         $this->name()->shouldReturn(ListCriterionStub::NAME);
     }
 
-    function it_can_return_its_value()
+    public function it_can_return_its_value(): void
     {
         $this->value()->shouldReturn(self::VALUE);
     }
 
-    function it_can_be_created_from_a_string()
+    public function it_can_be_created_from_a_string(): void
     {
         $this->beConstructedThrough('fromString', [self::STRING_VALUE]);
 
         $this->value()->shouldReturn(self::VALUE);
     }
 
-    function it_can_be_casted_to_a_string()
+    public function it_can_be_casted_to_a_string(): void
     {
         $this->__toString()->shouldReturn(self::STRING_VALUE);
     }
 
-    function it_can_act_as_criteria_factory()
+    public function it_can_act_as_criteria_factory(): void
     {
         $criteria = $this::criteria(1, 6);
 

@@ -14,35 +14,35 @@ class BooleanCriterionStubSpec extends ObjectBehavior
 {
     private const VALUE = true;
 
-    function let()
+    public function let(): void
     {
         $this->beConstructedWith(self::VALUE);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(BooleanCriterion::class);
         $this->shouldHaveType(Criterion::class);
         $this->shouldHaveType(HasKeywords::class);
     }
 
-    function it_can_return_its_name()
+    public function it_can_return_its_name(): void
     {
         $this->name()->shouldReturn(BooleanCriterionStub::NAME);
     }
 
-    function it_can_return_its_value()
+    public function it_can_return_its_value(): void
     {
         $this->value()->shouldReturn(self::VALUE);
     }
 
-    function it_can_check_if_it_is_truthy()
+    public function it_can_check_if_it_is_truthy(): void
     {
         $this->isTruthy()->shouldReturn(true);
         $this->isFalsy()->shouldReturn(false);
     }
 
-    function it_can_check_if_it_is_falsy()
+    public function it_can_check_if_it_is_falsy(): void
     {
         $this->beConstructedWith(false);
 
@@ -50,33 +50,33 @@ class BooleanCriterionStubSpec extends ObjectBehavior
         $this->isFalsy()->shouldReturn(true);
     }
 
-    function it_can_be_created_from_a_string_with_a_valid_truthy_value()
+    public function it_can_be_created_from_a_string_with_a_valid_truthy_value(): void
     {
         $this->beConstructedThrough('fromString', [BooleanCriterion::KEYWORD_TRUE]);
 
         $this->value()->shouldReturn(true);
     }
 
-    function it_can_be_created_from_a_string_with_a_valid_falsy_value()
+    public function it_can_be_created_from_a_string_with_a_valid_falsy_value(): void
     {
         $this->beConstructedThrough('fromString', [BooleanCriterion::KEYWORD_FALSE]);
 
         $this->value()->shouldReturn(false);
     }
 
-    function it_cannot_be_created_from_a_string_with_an_invalid_boolean_value()
+    public function it_cannot_be_created_from_a_string_with_an_invalid_boolean_value(): void
     {
         $this->beConstructedThrough('fromString', ['1']);
 
         $this->shouldThrow(InvalidCriterionValue::class)->duringInstantiation();
     }
 
-    function it_can_be_casted_to_a_string()
+    public function it_can_be_casted_to_a_string(): void
     {
         $this->__toString()->shouldReturn(BooleanCriterion::KEYWORD_TRUE);
     }
 
-    function it_can_act_as_criteria_factory()
+    public function it_can_act_as_criteria_factory(): void
     {
         $criteria = $this::criteria(self::VALUE);
 

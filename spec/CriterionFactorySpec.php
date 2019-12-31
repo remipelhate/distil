@@ -13,24 +13,24 @@ class CriterionFactorySpec extends ObjectBehavior
     private const NAME = 'stub';
     private const VALUE = 'Some Value';
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(CriterionFactory::class);
     }
 
-    function it_cannot_create_a_criterion_instance_by_name_when_the_name_has_no_resolver()
+    public function it_cannot_create_a_criterion_instance_by_name_when_the_name_has_no_resolver(): void
     {
         $this->shouldThrow(CannotCreateCriterion::class)->during('createByName', ['rubbish']);
     }
 
-    function it_fails_to_construct_with_resolvers_that_are_not_callable_or_a_class_name()
+    public function it_fails_to_construct_with_resolvers_that_are_not_callable_or_a_class_name(): void
     {
         $this->beConstructedWith([self::NAME => 'rubbish']);
 
         $this->shouldThrow(InvalidArgumentException::class)->duringInstantiation();
     }
 
-    function it_can_create_a_criterion_instance_by_name_using_the_criterion_constructor()
+    public function it_can_create_a_criterion_instance_by_name_using_the_criterion_constructor(): void
     {
         $this->beConstructedWith([self::NAME => CriterionForFactory::class]);
 
@@ -41,7 +41,7 @@ class CriterionFactorySpec extends ObjectBehavior
         $criterion->otherValue()->shouldReturn(null);
     }
 
-    function it_can_create_a_criterion_instance_by_name_using_a_callable_string_resolver()
+    public function it_can_create_a_criterion_instance_by_name_using_a_callable_string_resolver(): void
     {
         $this->beConstructedWith([self::NAME => CriterionForFactory::class.'::resolve']);
         $otherValue = 'Some Other Value';
@@ -56,7 +56,7 @@ class CriterionFactorySpec extends ObjectBehavior
         $criterion->otherValue()->shouldReturn(self::VALUE);
     }
 
-    function it_can_create_a_criterion_instance_by_name_using_a_callable_resolver()
+    public function it_can_create_a_criterion_instance_by_name_using_a_callable_resolver(): void
     {
         $this->beConstructedWith([self::NAME => function (...$arguments) {
             return new CriterionForFactory(...array_reverse($arguments));

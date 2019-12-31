@@ -12,33 +12,33 @@ class StringCriterionStubSpec extends ObjectBehavior
 {
     private const VALUE = 'Some String Value';
 
-    function let()
+    public function let(): void
     {
         $this->beConstructedWith(self::VALUE);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(StringCriterion::class);
         $this->shouldHaveType(Criterion::class);
     }
 
-    function it_can_return_its_name()
+    public function it_can_return_its_name(): void
     {
         $this->name()->shouldReturn(StringCriterionStub::NAME);
     }
 
-    function it_can_return_its_value()
+    public function it_can_return_its_value(): void
     {
         $this->value()->shouldReturn(self::VALUE);
     }
 
-    function it_can_be_casted_to_a_string()
+    public function it_can_be_casted_to_a_string(): void
     {
         $this->__toString()->shouldReturn(self::VALUE);
     }
 
-    function it_can_act_as_criteria_factory()
+    public function it_can_act_as_criteria_factory(): void
     {
         $criteria = $this::criteria(self::VALUE);
 
