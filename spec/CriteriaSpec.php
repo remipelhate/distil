@@ -5,6 +5,7 @@ namespace spec\Distil;
 use Distil\Criteria;
 use Distil\Criterion;
 use Distil\Exceptions\CannotAddCriterion;
+use Distil\Exceptions\CannotGetCriterion;
 use PhpSpec\ObjectBehavior;
 
 class CriteriaSpec extends ObjectBehavior
@@ -60,14 +61,24 @@ class CriteriaSpec extends ObjectBehavior
         $this->has('rubbish')->shouldReturn(false);
     }
 
+    public function it_can_find_a_criterion_by_name_if_it_exists(Criterion $firstCriterion): void
+    {
+        $this->find(self::CRITERION_NAME_FIRST)->shouldReturn($firstCriterion);
+    }
+
+    public function it_returns_null_when_it_cannot_find_a_criterion_by_name(): void
+    {
+        $this->find('rubbish')->shouldReturn(null);
+    }
+
     public function it_can_get_a_criterion_by_name_if_it_exists(Criterion $firstCriterion): void
     {
         $this->get(self::CRITERION_NAME_FIRST)->shouldReturn($firstCriterion);
     }
 
-    public function it_returns_null_when_there_is_no_criterion_for_the_given_name(): void
+    public function it_throws_an_error_when_it_cannot_get_a_criterion_by_name(): void
     {
-        $this->get('rubbish')->shouldReturn(null);
+        $this->shouldThrow(CannotGetCriterion::class)->during('get', ['rubbish']);
     }
 
     public function it_can_add_a_new_criterion(Criterion $newCriterion): void

@@ -3,6 +3,9 @@
 namespace Distil;
 
 use Distil\Exceptions\CannotAddCriterion;
+use Distil\Exceptions\CannotGetCriterion;
+
+use function array_key_exists;
 
 final class Criteria
 {
@@ -36,14 +39,23 @@ final class Criteria
         return array_key_exists($name, $this->items);
     }
 
-    public function get(string $name): ?Criterion
+    public function get(string $name): Criterion
+    {
+        if (! $this->has($name)) {
+            throw CannotGetCriterion::noItemForName($name);
+        }
+
+        return $this->items[$name];
+    }
+
+    public function find(string $name): ?Criterion
     {
         return $this->items[$name] ?? null;
     }
 
     public function add(Criterion $criterion): self
     {
-        if (array_key_exists($criterion->name(), $this->items)) {
+        if ($this->has($criterion->name())) {
             throw CannotAddCriterion::nameAlreadyTaken($criterion);
         }
 

@@ -130,12 +130,15 @@ $criteria->has('published'); // returns false
 $criteria->has('author'); // returns true
 ```
 
-... and get it:
+... and get or find it:
 
 ```php
 $criteria = new Distil\Criteria(new Author(1));
 
-$criteria->get('published'); // returns null
+$criteria->find('published'); // returns null
+$criteria->find('author'); // returns the Author instance
+
+$criteria->get('published'); // throws an error
 $criteria->get('author'); // returns the Author instance
 ```
 
