@@ -12,9 +12,4 @@ final class CannotAddCriterion extends Exception
     {
         return new self(Criteria::class." already contains an item named [{$criterion->name()}].");
     }
-
-    public static function notACriterionInstance(): self
-    {
-        return new self(Criteria::class.' can only contain instances of '.Criterion::class.'.');
-    }
 }
