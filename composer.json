@@ -13,6 +13,7 @@
         "phpspec/phpspec": "^6.1"
     },
     "require-dev": {
+        "phpunit/phpunit": "^8"
     },
     "autoload": {
         "psr-4": {
@@ -21,7 +22,11 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Distil\\Stubs\\": "stubs"
+            "Distil\\Stubs\\": "stubs",
+            "Distil\\Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }

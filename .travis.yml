@@ -10,3 +10,4 @@ install:
 
 script:
   - vendor/bin/phpspec run --verbose
+  - composer test
