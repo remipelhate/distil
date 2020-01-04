@@ -24,6 +24,11 @@ final class FakeCriterion implements Criterion
         $this->value = $value;
     }
 
+    public static function make(string $name, $value): self
+    {
+        return new self($name, $value);
+    }
+
     public function name(): string
     {
         return $this->name;
