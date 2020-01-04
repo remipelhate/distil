@@ -20,12 +20,6 @@
             "Distil\\": "src"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Distil\\Stubs\\": "stubs",
-            "Distil\\Tests\\": "tests"
-        }
-    },
     "scripts": {
         "test": "vendor/bin/phpunit"
     }

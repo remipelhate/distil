@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Distil\Tests;
+namespace Distil;
 
-use Distil\Criteria;
 use Distil\Exceptions\CannotAddCriterion;
 use Distil\Exceptions\CannotGetCriterion;
-use Distil\Tests\Fakes\FakeCriterion;
+use Distil\FakeCriterion;
 use PHPUnit\Framework\TestCase;
 
 use function array_values;

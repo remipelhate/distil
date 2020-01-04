@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Distil\Tests;
+namespace Distil;
 
-use Distil\CriterionFactory;
 use Distil\Exceptions\CannotCreateCriterion;
-use Distil\Tests\Fakes\FakeCriterion;
+use Distil\FakeCriterion;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

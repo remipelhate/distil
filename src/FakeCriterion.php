@@ -2,10 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Distil\Tests\Fakes;
-
-use Distil\ActsAsCriteriaFactory;
-use Distil\Criterion;
+namespace Distil;
 
 final class FakeCriterion implements Criterion
 {
