@@ -9,10 +9,6 @@ final class FakeCriterion implements Criterion
     use ActsAsCriteriaFactory;
 
     private string $name;
-
-    /**
-     * @var mixed
-     */
     private $value;
 
     public function __construct(string $name, $value)

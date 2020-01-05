@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Distil;
 
 use Distil\Exceptions\CannotCreateCriterion;
-use Distil\FakeCriterion;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
