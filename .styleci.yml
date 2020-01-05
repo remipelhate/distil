@@ -10,7 +10,3 @@ disabled:
   - phpdoc_align
   - phpdoc_separation
   - simplified_null_return
-
-finder:
-  exclude:
-    - "spec"
