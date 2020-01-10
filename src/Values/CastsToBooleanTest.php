@@ -6,7 +6,7 @@ namespace Distil\Values;
 
 final class CastsToBooleanTest extends CastsKeywordTestCase
 {
-    public function testItCanConstructWithATBooleanValue(): void
+    public function testItCanConstructWithABooleanValue(): void
     {
         $truthy = new FakeCastsToBoolean(true);
         $falsy = new FakeCastsToBoolean(false);

@@ -19,4 +19,11 @@ class InvalidKeyword extends RuntimeException
             implode(', ', array_keys(BooleanKeyword::CASTED_VALUES))
         );
     }
+
+    public static function cannotBeCastedToInteger(string $keyword): self
+    {
+        return new self(
+            "[$keyword] is not a valid integer keyword. It must be an string representation of an integer."
+        );
+    }
 }
