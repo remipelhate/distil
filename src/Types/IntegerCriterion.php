@@ -4,7 +4,7 @@ namespace Distil\Types;
 
 use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
-use Distil\Values\CastsToInteger;
+use Distil\Values\ConstructsFromInteger;
 
 /**
  * @deprecated 1.0.0 Use the according traits instead.
@@ -12,5 +12,5 @@ use Distil\Values\CastsToInteger;
 abstract class IntegerCriterion implements Criterion
 {
     use ActsAsCriteriaFactory;
-    use CastsToInteger;
+    use ConstructsFromInteger;
 }

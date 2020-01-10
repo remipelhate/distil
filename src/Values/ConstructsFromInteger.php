@@ -6,9 +6,9 @@ namespace Distil\Values;
 
 use Distil\Exceptions\InvalidCriterionValue;
 
-trait CastsToInteger
+trait ConstructsFromInteger
 {
-    use CastsKeywords;
+    use ConstructsFromKeyword;
 
     private int $value;
 

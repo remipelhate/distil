@@ -4,7 +4,7 @@ namespace Distil\Types;
 
 use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
-use Distil\Values\CastsToBoolean;
+use Distil\Values\ConstructsFromBoolean;
 
 /**
  * @deprecated 1.0.0 Use the according traits instead.
@@ -12,5 +12,5 @@ use Distil\Values\CastsToBoolean;
 abstract class BooleanCriterion implements Criterion
 {
     use ActsAsCriteriaFactory;
-    use CastsToBoolean;
+    use ConstructsFromBoolean;
 }

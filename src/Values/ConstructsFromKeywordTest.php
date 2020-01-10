@@ -6,14 +6,14 @@ namespace Distil\Values;
 
 use PHPUnit\Framework\TestCase;
 
-final class CastsKeywordTest extends CastsKeywordTestCase
+final class ConstructsFromKeywordTest extends ConstructsFromKeywordTestCase
 {
     protected function keyword(): Keyword
     {
         return FakeKeyword::casted(FakeCastsKeyword::ORIGINAL_VALUE);
     }
 
-    protected function castsKeyword(): object
+    protected function constructsFromKeyword(): object
     {
         return new FakeCastsKeyword();
     }
@@ -21,7 +21,7 @@ final class CastsKeywordTest extends CastsKeywordTestCase
 
 final class FakeCastsKeyword
 {
-    use CastsKeywords;
+    use ConstructsFromKeyword;
 
     public const ORIGINAL_VALUE = 'foo';
 

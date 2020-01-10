@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Distil\Values;
 
-final class CastsToBooleanTest extends CastsKeywordTestCase
+final class ConstructsFromBooleanTest extends ConstructsFromKeywordTestCase
 {
     public function testItCanConstructWithABooleanValue(): void
     {
-        $truthy = new FakeCastsToBoolean(true);
-        $falsy = new FakeCastsToBoolean(false);
+        $truthy = new FakeConstructsFromBoolean(true);
+        $falsy = new FakeConstructsFromBoolean(false);
 
-        $this->assertInstanceOf(FakeCastsToBoolean::class, $truthy);
-        $this->assertInstanceOf(FakeCastsToBoolean::class, $falsy);
+        $this->assertInstanceOf(FakeConstructsFromBoolean::class, $truthy);
+        $this->assertInstanceOf(FakeConstructsFromBoolean::class, $falsy);
     }
 
     public function testItCanReturnItsValue(): void
     {
-        $truthy = new FakeCastsToBoolean(true);
-        $falsy = new FakeCastsToBoolean(false);
+        $truthy = new FakeConstructsFromBoolean(true);
+        $falsy = new FakeConstructsFromBoolean(false);
 
         $this->assertTrue($truthy->value());
         $this->assertFalse($falsy->value());
@@ -26,8 +26,8 @@ final class CastsToBooleanTest extends CastsKeywordTestCase
 
     public function testItCanCheckIfItIsTruthy(): void
     {
-        $truthy = new FakeCastsToBoolean(true);
-        $falsy = new FakeCastsToBoolean(false);
+        $truthy = new FakeConstructsFromBoolean(true);
+        $falsy = new FakeConstructsFromBoolean(false);
 
         $this->assertTrue($truthy->isTruthy());
         $this->assertFalse($falsy->isTruthy());
@@ -35,8 +35,8 @@ final class CastsToBooleanTest extends CastsKeywordTestCase
 
     public function testItCanCheckIfItIsFalsy(): void
     {
-        $truthy = new FakeCastsToBoolean(true);
-        $falsy = new FakeCastsToBoolean(false);
+        $truthy = new FakeConstructsFromBoolean(true);
+        $falsy = new FakeConstructsFromBoolean(false);
 
         $this->assertFalse($truthy->isFalsy());
         $this->assertTrue($falsy->isFalsy());
@@ -47,15 +47,15 @@ final class CastsToBooleanTest extends CastsKeywordTestCase
         return FakeKeyword::casted(true);
     }
 
-    protected function castsKeyword(): object
+    protected function constructsFromKeyword(): object
     {
-        return FakeCastsToBoolean::withOriginalValue();
+        return FakeConstructsFromBoolean::withOriginalValue();
     }
 }
 
-final class FakeCastsToBoolean
+final class FakeConstructsFromBoolean
 {
-    use CastsToBoolean;
+    use ConstructsFromBoolean;
 
     public const ORIGINAL_VALUE = true;
 

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Distil\Values;
 
-final class CastsToIntegerTest extends CastsKeywordTestCase
+final class ConstructsFromToIntegerTest extends ConstructsFromKeywordTestCase
 {
     public function testItCanConstructWithAnIntegerValue(): void
     {
-        $instance = new FakeCastsToInteger(20170728);
+        $instance = new FakeConstructsFromInteger(20170728);
 
-        $this->assertInstanceOf(FakeCastsToInteger::class, $instance);
+        $this->assertInstanceOf(FakeConstructsFromInteger::class, $instance);
     }
 
     public function testItCanReturnItsValue(): void
     {
-        $instance = new FakeCastsToInteger(20170728);
+        $instance = new FakeConstructsFromInteger(20170728);
 
         $this->assertSame(20170728, $instance->value());
     }
@@ -25,15 +25,15 @@ final class CastsToIntegerTest extends CastsKeywordTestCase
         return new IntegerKeyword('20170728');
     }
 
-    protected function castsKeyword(): object
+    protected function constructsFromKeyword(): object
     {
-        return FakeCastsToInteger::withOriginalValue();
+        return FakeConstructsFromInteger::withOriginalValue();
     }
 }
 
-final class FakeCastsToInteger
+final class FakeConstructsFromInteger
 {
-    use CastsToInteger;
+    use ConstructsFromInteger;
 
     public const ORIGINAL_VALUE = 20170728;
 

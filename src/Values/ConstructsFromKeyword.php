@@ -2,7 +2,7 @@
 
 namespace Distil\Values;
 
-trait CastsKeywords
+trait ConstructsFromKeyword
 {
     private ?Keyword $keyword = null;
 

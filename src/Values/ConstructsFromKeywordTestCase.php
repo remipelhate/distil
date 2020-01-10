@@ -8,15 +8,15 @@ use PHPUnit\Framework\TestCase;
 
 use function get_class;
 
-abstract class CastsKeywordTestCase extends TestCase
+abstract class ConstructsFromKeywordTestCase extends TestCase
 {
     abstract protected function keyword(): Keyword;
-    abstract protected function castsKeyword(): object;
+    abstract protected function constructsFromKeyword(): object;
 
     public function testItCanConstructTheImplementingClassFromAKeyword(): void
     {
         $keyword = $this->keyword();
-        $castsKeyword = $this->castsKeyword();
+        $castsKeyword = $this->constructsFromKeyword();
 
         $instance = $castsKeyword::fromKeyword($keyword);
 
@@ -26,7 +26,7 @@ abstract class CastsKeywordTestCase extends TestCase
     public function testItCanReturnTheKeyword(): void
     {
         $keyword = $this->keyword();
-        $castsKeyword = $this->castsKeyword();
+        $castsKeyword = $this->constructsFromKeyword();
 
         $instance = $castsKeyword::fromKeyword($keyword);
 
@@ -35,7 +35,7 @@ abstract class CastsKeywordTestCase extends TestCase
 
     public function testItReturnsNullWhenNotConstructedFromAKeyword(): void
     {
-        $castsKeyword = $this->castsKeyword();
+        $castsKeyword = $this->constructsFromKeyword();
 
         $this->assertNull($castsKeyword->keyword());
     }
@@ -43,7 +43,7 @@ abstract class CastsKeywordTestCase extends TestCase
     public function testItReturnsTheKeywordWhenCastingToAString(): void
     {
         $keyword = $this->keyword();
-        $castsKeyword = $this->castsKeyword();
+        $castsKeyword = $this->constructsFromKeyword();
 
         $instance = $castsKeyword::fromKeyword($keyword);
 
@@ -52,7 +52,7 @@ abstract class CastsKeywordTestCase extends TestCase
 
     public function testItReturnsTheStringValueWhenCastingToAStringWhenNotConstructedFromAKeyword(): void
     {
-        $castsKeyword = $this->castsKeyword();
+        $castsKeyword = $this->constructsFromKeyword();
 
         $this->assertSame((string) $castsKeyword::ORIGINAL_VALUE, (string) $castsKeyword);
     }

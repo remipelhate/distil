@@ -8,9 +8,9 @@ use Distil\Exceptions\InvalidCriterionValue;
 
 use function in_array;
 
-trait CastsToBoolean
+trait ConstructsFromBoolean
 {
-    use CastsKeywords;
+    use ConstructsFromKeyword;
 
     private bool $value;
 
