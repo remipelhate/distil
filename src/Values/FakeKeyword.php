@@ -6,7 +6,9 @@ namespace Distil\Values;
 
 final class FakeKeyword implements Keyword
 {
-    private string $keyword;
+    public const STRING_VALUE = 'keyword';
+
+    private string $stringValue;
 
     /**
      * @var mixed
@@ -15,18 +17,18 @@ final class FakeKeyword implements Keyword
 
     private function __construct($keyword, $castedValue)
     {
+        $this->stringValue = $keyword;
         $this->castedValue = $castedValue;
-        $this->keyword = $keyword;
     }
 
-    public static function casted($value, string $keyword = 'keyword'): self
+    public static function casted($value, string $keyword = self::STRING_VALUE): self
     {
         return new self($keyword, $value);
     }
 
     public function __toString(): string
     {
-        return $this->keyword;
+        return $this->stringValue;
     }
 
     public function castedValue()
