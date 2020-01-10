@@ -6,11 +6,12 @@ namespace Distil\Values;
 
 use Distil\Exceptions\InvalidKeyword;
 
-use function array_keys;
 use function array_key_exists;
 
 final class BooleanKeyword implements Keyword
 {
+    use ConstructsNullableKeyword;
+
     public const CASTED_VALUES = [
         'true' => true,
         '1' => true,

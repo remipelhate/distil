@@ -21,9 +21,9 @@ final class BooleanKeywordTest extends TestCase
         $truthyKeyword = new BooleanKeyword('true');
         $numericTruthyKeyword = new BooleanKeyword('1');
 
-        $this->assertEquals('true', $truthyKeyword->__toString());
+        $this->assertEquals('true', (string) $truthyKeyword);
         $this->assertTrue($truthyKeyword->castedValue());
-        $this->assertEquals('1', $numericTruthyKeyword->__toString());
+        $this->assertEquals('1', (string) $numericTruthyKeyword);
         $this->assertTrue($numericTruthyKeyword->castedValue());
     }
 
@@ -32,9 +32,9 @@ final class BooleanKeywordTest extends TestCase
         $falsyKeyword = new BooleanKeyword('false');
         $numericFalsyKeyword = new BooleanKeyword('0');
 
-        $this->assertEquals('false', $falsyKeyword->__toString());
+        $this->assertEquals('false', (string) $falsyKeyword);
         $this->assertFalse($falsyKeyword->castedValue());
-        $this->assertEquals('0', $numericFalsyKeyword->__toString());
+        $this->assertEquals('0', (string) $numericFalsyKeyword);
         $this->assertFalse($numericFalsyKeyword->castedValue());
     }
 
@@ -43,5 +43,13 @@ final class BooleanKeywordTest extends TestCase
         $keyword = new BooleanKeyword('true');
 
         $this->assertInstanceOf(Keyword::class, $keyword);
+    }
+
+    public function testItCanConstructANullableInstance(): void
+    {
+        $keyword = BooleanKeyword::nullable('true');
+
+        $this->assertInstanceOf(NullableKeyword::class, $keyword);
+        $this->assertEquals(new BooleanKeyword('true'), $keyword->deferredKeyword());
     }
 }
