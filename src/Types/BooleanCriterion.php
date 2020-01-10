@@ -4,64 +4,13 @@ namespace Distil\Types;
 
 use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
-use Distil\Exceptions\InvalidCriterionValue;
-use Distil\Keywords\HasKeywords;
-use Distil\Keywords\Keyword;
-use Distil\Keywords\Value;
+use Distil\Values\CastsToBoolean;
 
-abstract class BooleanCriterion implements Criterion, HasKeywords
+/**
+ * @deprecated 1.0.0 Use the according traits instead.
+ */
+abstract class BooleanCriterion implements Criterion
 {
     use ActsAsCriteriaFactory;
-
-    public const KEYWORD_TRUE = 'true';
-    public const KEYWORD_FALSE = 'false';
-
-    private bool $value;
-
-    public function __construct(bool $value)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * @return static
-     */
-    public static function fromString(string $value): self
-    {
-        $value = (new Keyword(static::class, $value))->value();
-
-        if (! is_bool($value)) {
-            throw InvalidCriterionValue::expectedBoolean(static::class);
-        }
-
-        return new static($value);
-    }
-
-    public function value(): bool
-    {
-        return $this->value;
-    }
-
-    public function isTruthy(): bool
-    {
-        return $this->value;
-    }
-
-    public function isFalsy(): bool
-    {
-        return ! $this->isTruthy();
-    }
-
-    public static function keywords(): array
-    {
-        return [
-            static::KEYWORD_TRUE => true,
-            static::KEYWORD_FALSE => false,
-        ];
-    }
-
-    public function __toString(): string
-    {
-        return (new Value($this, $this->value))->keyword();
-    }
+    use CastsToBoolean;
 }
