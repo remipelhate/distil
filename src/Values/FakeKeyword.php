@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Distil\Values;
 
+/**
+ * @internal
+ */
 final class FakeKeyword implements Keyword
 {
     public const STRING_VALUE = 'keyword';
