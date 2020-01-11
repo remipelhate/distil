@@ -16,44 +16,44 @@ abstract class ConstructsFromKeywordTestCase extends TestCase
     public function testItCanConstructTheImplementingClassFromAKeyword(): void
     {
         $keyword = $this->keyword();
-        $castsKeyword = $this->constructsFromKeyword();
+        $constructsFromKeyword = $this->constructsFromKeyword();
 
-        $instance = $castsKeyword::fromKeyword($keyword);
+        $instance = $constructsFromKeyword::fromKeyword($keyword);
 
-        $this->assertInstanceOf(get_class($castsKeyword), $instance);
+        $this->assertInstanceOf(get_class($constructsFromKeyword), $instance);
     }
 
     public function testItCanReturnTheKeyword(): void
     {
         $keyword = $this->keyword();
-        $castsKeyword = $this->constructsFromKeyword();
+        $constructsFromKeyword = $this->constructsFromKeyword();
 
-        $instance = $castsKeyword::fromKeyword($keyword);
+        $instance = $constructsFromKeyword::fromKeyword($keyword);
 
         $this->assertSame($keyword, $instance->keyword());
     }
 
     public function testItReturnsNullWhenNotConstructedFromAKeyword(): void
     {
-        $castsKeyword = $this->constructsFromKeyword();
+        $constructsFromKeyword = $this->constructsFromKeyword();
 
-        $this->assertNull($castsKeyword->keyword());
+        $this->assertNull($constructsFromKeyword->keyword());
     }
 
     public function testItReturnsTheKeywordWhenCastingToAString(): void
     {
         $keyword = $this->keyword();
-        $castsKeyword = $this->constructsFromKeyword();
+        $constructsFromKeyword = $this->constructsFromKeyword();
 
-        $instance = $castsKeyword::fromKeyword($keyword);
+        $instance = $constructsFromKeyword::fromKeyword($keyword);
 
         $this->assertSame((string) $keyword, (string) $instance);
     }
 
     public function testItReturnsTheStringValueWhenCastingToAStringWhenNotConstructedFromAKeyword(): void
     {
-        $castsKeyword = $this->constructsFromKeyword();
+        $constructsFromKeyword = $this->constructsFromKeyword();
 
-        $this->assertSame((string) $castsKeyword::ORIGINAL_VALUE, (string) $castsKeyword);
+        $this->assertSame((string) $constructsFromKeyword::ORIGINAL_VALUE, (string) $constructsFromKeyword);
     }
 }
