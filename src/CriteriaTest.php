@@ -6,7 +6,6 @@ namespace Distil;
 
 use Distil\Exceptions\CannotAddCriterion;
 use Distil\Exceptions\CannotGetCriterion;
-use Distil\FakeCriterion;
 use PHPUnit\Framework\TestCase;
 
 use function array_values;

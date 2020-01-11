@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Distil\Values;
 
-use PHPUnit\Framework\TestCase;
-
 final class ConstructsFromKeywordTest extends ConstructsFromKeywordTestCase
 {
     protected function keyword(): Keyword

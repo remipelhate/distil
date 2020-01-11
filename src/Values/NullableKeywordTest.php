@@ -38,7 +38,7 @@ final class NullableKeywordTest extends TestCase
 
     public function testItImplementsTheKeywordInterface(): void
     {
-        $keyword = new NullableKeyword('null', function () {});
+        $keyword = new NullableKeyword('null', fn () => null);
 
         $this->assertInstanceOf(Keyword::class, $keyword);
     }

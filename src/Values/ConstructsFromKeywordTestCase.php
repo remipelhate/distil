@@ -11,6 +11,7 @@ use function get_class;
 abstract class ConstructsFromKeywordTestCase extends TestCase
 {
     abstract protected function keyword(): Keyword;
+
     abstract protected function constructsFromKeyword(): object;
 
     public function testItCanConstructTheImplementingClassFromAKeyword(): void

@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Distil\Values;
 
-use Distil\Exceptions\InvalidCriterionValue;
-
-use function in_array;
-
 trait ConstructsFromBoolean
 {
     use ConstructsFromKeyword;
