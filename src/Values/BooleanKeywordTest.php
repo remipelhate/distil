@@ -9,47 +9,92 @@ use PHPUnit\Framework\TestCase;
 
 final class BooleanKeywordTest extends TestCase
 {
-    public function testItFailsToInitializeWithAnInvalidValue(): void
+    /**
+     * @test
+     */
+    public function it_fails_to_initialize_with_an_invalid_keyword(): void
     {
-        $this->expectException(InvalidKeyword::class);
+        $invalidValue = 'rubbish';
 
-        new BooleanKeyword('rubbish');
+        $this->expectExceptionObject(InvalidKeyword::cannotBeCastedToBoolean($invalidValue));
+
+        new BooleanKeyword($invalidValue);
     }
 
-    public function testItCanCastValidTruthyKeywordsToABoolean(): void
-    {
-        $truthyKeyword = new BooleanKeyword('true');
-        $numericTruthyKeyword = new BooleanKeyword('1');
-
-        $this->assertEquals('true', (string) $truthyKeyword);
-        $this->assertTrue($truthyKeyword->castedValue());
-        $this->assertEquals('1', (string) $numericTruthyKeyword);
-        $this->assertTrue($numericTruthyKeyword->castedValue());
-    }
-
-    public function testItCanCastValidFalsyKeywordsToABoolean(): void
-    {
-        $falsyKeyword = new BooleanKeyword('false');
-        $numericFalsyKeyword = new BooleanKeyword('0');
-
-        $this->assertEquals('false', (string) $falsyKeyword);
-        $this->assertFalse($falsyKeyword->castedValue());
-        $this->assertEquals('0', (string) $numericFalsyKeyword);
-        $this->assertFalse($numericFalsyKeyword->castedValue());
-    }
-
-    public function testItImplementsTheKeywordInterface(): void
+    /**
+     * @test
+     */
+    public function it_implements_the_keyword_interface(): void
     {
         $keyword = new BooleanKeyword('true');
 
         $this->assertInstanceOf(Keyword::class, $keyword);
     }
 
-    public function testItCanConstructANullableInstance(): void
+    public function validStringValues(): array
     {
-        $keyword = BooleanKeyword::nullable('true');
+        return [
+            [
+                'string_value' => 'true',
+                'expected_casted_value' => true,
+            ],
+            [
+                'string_value' => '1',
+                'expected_casted_value' => true,
+            ],
+            [
+                'string_value' => 'false',
+                'expected_casted_value' => false,
+            ],
+            [
+                'string_value' => '0',
+                'expected_casted_value' => false,
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider validStringValues
+     */
+    public function it_can_return_its_casted_value(string $stringValue, bool $expectedCastedValue): void
+    {
+        $this->assertSame($expectedCastedValue, (new BooleanKeyword($stringValue))->castedValue());
+    }
+
+    /**
+     * @test
+     * @dataProvider validStringValues
+     */
+    public function it_can_be_casted_to_a_string(string $keyword): void
+    {
+        $this->assertSame($keyword, (string) new BooleanKeyword($keyword));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_be_initialized_to_accept_nullable_values(): void
+    {
+        $keyword = BooleanKeyword::nullable(NullableKeyword::VALUE);
 
         $this->assertInstanceOf(NullableKeyword::class, $keyword);
-        $this->assertEquals(new BooleanKeyword('true'), $keyword->deferredKeyword());
+        $this->assertSame(null, $keyword->castedValue());
+        $this->assertNull($keyword->deferredKeyword());
+    }
+
+    /**
+     * @test
+     * @dataProvider validStringValues
+     */
+    public function it_returns_the_deferred_keyword_when_accepting_nullable_values_but_the_value_is_not_nullable(
+        string $stringValue,
+        $expectedCastedValue
+    ): void {
+        $keyword = BooleanKeyword::nullable($stringValue);
+
+        $this->assertInstanceOf(NullableKeyword::class, $keyword);
+        $this->assertEquals($expectedCastedValue, (new BooleanKeyword($stringValue))->castedValue());
+        $this->assertEquals(new BooleanKeyword($stringValue), $keyword->deferredKeyword());
     }
 }

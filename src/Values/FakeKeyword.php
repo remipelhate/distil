@@ -9,7 +9,7 @@ namespace Distil\Values;
  */
 final class FakeKeyword implements Keyword
 {
-    public const STRING_VALUE = 'keyword';
+    public const VALUE = 'keyword';
 
     private string $stringValue;
 
@@ -24,7 +24,7 @@ final class FakeKeyword implements Keyword
         $this->castedValue = $castedValue;
     }
 
-    public static function casted($value, string $keyword = self::STRING_VALUE): self
+    public static function casted($value, string $keyword = self::VALUE): self
     {
         return new self($keyword, $value);
     }

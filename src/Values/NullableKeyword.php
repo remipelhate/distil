@@ -4,30 +4,22 @@ declare(strict_types=1);
 
 namespace Distil\Values;
 
-use InvalidArgumentException;
-
 final class NullableKeyword implements Keyword
 {
-    public const KEYWORD = 'null';
+    public const VALUE = 'null';
 
     private ?Keyword $deferredKeyword = null;
 
     public function __construct(string $keyword, callable $deferredKeyword)
     {
-        if ($keyword !== self::KEYWORD) {
-            $this->guardAgainstInvalidDeferredKeyword($keyword = $deferredKeyword($keyword));
-
-            $this->deferredKeyword = $keyword;
+        if (! $this->isNullValue($keyword)) {
+            $this->deferredKeyword = $deferredKeyword($keyword);
         }
     }
 
-    private function guardAgainstInvalidDeferredKeyword($keyword): void
+    private function isNullValue(string $keyword): bool
     {
-        if (! $keyword instanceof Keyword) {
-            throw new InvalidArgumentException(
-                'Argument 2 of ['.self::class.'] must be a callable returning a ['.Keyword::class.'] instance.'
-            );
-        }
+        return $keyword === self::VALUE;
     }
 
     public function __toString(): string
@@ -36,7 +28,7 @@ final class NullableKeyword implements Keyword
             return (string) $this->deferredKeyword;
         }
 
-        return self::KEYWORD;
+        return self::VALUE;
     }
 
     public function castedValue()
