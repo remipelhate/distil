@@ -12,7 +12,8 @@
         "php": "^7.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8"
+        "phpunit/phpunit": "^8",
+        "sempro/phpunit-pretty-print": "^1.2"
     },
     "autoload": {
         "psr-4": {

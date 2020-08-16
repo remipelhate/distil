@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" colors="true">
+<phpunit
+    bootstrap="vendor/autoload.php"
+    colors="true"
+    printerClass="Sempro\PHPUnitPrettyPrinter\PrettyPrinter"
+>
     <testsuites>
         <testsuite name="Distil">
             <directory suffix="Test.php">src/</directory>
