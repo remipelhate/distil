@@ -2,42 +2,41 @@
 
 namespace Distil\Types;
 
-use DateTime;
-use DateTimeImmutable;
 use DateTimeInterface;
 use Distil\ActsAsCriteriaFactory;
 use Distil\Criterion;
-use Distil\Exceptions\InvalidCriterionValue;
-use Distil\Keywords\Keyword;
-use Distil\Keywords\Value;
+use Distil\Values\ConstructsFromKeyword;
+use Distil\Values\DateTimeKeyword;
 
 abstract class DateTimeCriterion implements Criterion
 {
     use ActsAsCriteriaFactory;
+    use ConstructsFromKeyword;
 
     private DateTimeInterface $value;
     private string $format;
 
-    public function __construct(DateTimeInterface $value, string $format = DateTime::ATOM)
+    public function __construct(DateTimeInterface $value, string $format = DateTimeInterface::ATOM)
     {
         $this->value = $value;
         $this->format = $format;
     }
 
+    public function __toString(): string
+    {
+        if ($this->keyword) {
+            return (string) $this->keyword;
+        }
+
+        return $this->value->format($this->format);
+    }
+
     /**
      * @return static
      */
-    public static function fromString(string $value, string $format = DateTime::ATOM): self
+    public static function fromString(string $value): self
     {
-        $value = (new Keyword(static::class, $value))->value();
-
-        if ($value instanceof DateTimeInterface) {
-            return new static($value, $format);
-        } elseif (strtotime($value)) {
-            return new static(new DateTimeImmutable($value), $format);
-        }
-
-        throw InvalidCriterionValue::expectedTimeString(static::class);
+        return self::fromKeyword(new DateTimeKeyword($value));
     }
 
     public function value(): DateTimeInterface
@@ -48,10 +47,5 @@ abstract class DateTimeCriterion implements Criterion
     public function format(): string
     {
         return $this->format;
-    }
-
-    public function __toString(): string
-    {
-        return (new Value($this, $this->value))->keyword() ?: $this->value->format($this->format);
     }
 }

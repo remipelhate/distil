@@ -1,6 +1,7 @@
 * text=auto
 
 **/*Test.php export-ignore
+**/*TestCase.php export-ignore
 **/Fake*.php export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
