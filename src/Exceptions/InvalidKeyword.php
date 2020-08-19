@@ -10,12 +10,12 @@ use RuntimeException;
 use function array_keys;
 use function implode;
 
-class InvalidKeyword extends RuntimeException
+final class InvalidKeyword extends RuntimeException
 {
     public static function cannotBeCastedToBoolean(string $keyword): self
     {
         return new self(
-            "[$keyword] is not a valid boolean keyword. Valid keywords are: ".
+            "[$keyword] is not a valid boolean keyword. Valid keywords are: " .
             implode(', ', array_keys(BooleanKeyword::CASTED_VALUES))
         );
     }
@@ -30,7 +30,7 @@ class InvalidKeyword extends RuntimeException
     public static function cannotBeCastedToDateTime(string $keyword): self
     {
         return new self(
-            "[$keyword] is not a valid DateTime keyword. It must be a date/time string ".
+            "[$keyword] is not a valid DateTime keyword. It must be a date/time string " .
             '(see https://www.php.net/manual/en/datetime.formats.php).'
         );
     }
