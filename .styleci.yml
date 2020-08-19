@@ -1,12 +1,5 @@
-preset: recommended
+preset: psr12
 enabled:
   - not_operator_with_successor_space
   - phpdoc_no_empty_return
   - unalign_double_arrow
-  - no_superfluous_phpdoc_tags
-disabled:
-  - align_double_arrow
-  - alpha_ordered_imports
-  - no_blank_lines_between_imports
-  - phpdoc_align
-  - phpdoc_separation
